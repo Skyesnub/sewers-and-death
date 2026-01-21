@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NOT a video game</title>
+  <link rel="icon" type="image/png" href="./trollgame_images/quest_game_image4.png">
+
+  <style>
+    #canvasContainer {
+      position: relative;
+      width: 1450px;
+      height: 700px;
+    }
+
+    #lvl1 {position: absolute; top: 550px; left: 490px}
+    #lvl2 {position: absolute; top: 550px; left: 590px}
+    #lvl3 {position: absolute; top: 550px; left: 690px}
+    #lvl4 {position: absolute; top: 550px; left: 790px}
+    #lvl5 {position: absolute; top: 550px; left: 890px}
+    #lvl6 {position: absolute; top: 625px; left: 490px}
+    #lvl7 {position: absolute; top: 625px; left: 590px}
+    #lvl8 {position: absolute; top: 625px; left: 690px}
+    #lvl9 {position: absolute; top: 625px; left: 790px}
+    #lvl10 {position: absolute; top: 625px; left: 890px}
+    #howToPlayInfo {position: absolute; top: 0px; left: 100px; width: 200px}
+    #player-glow {position:absolute; top: 150px; left: -400px; transform: scale(4)}
+    #player-icon {position:absolute; top: 150px; left: -400px; transform: scale(4)}
+    #block {position:absolute; top: 117.5px; left: 400px; transform: scale(2)}
+    #block2 {position:absolute; top: 55px; left: 500px; transform: scale(2)}
+    #spike {position:absolute; top: -107.5px; left: 500px; transform: scale(2)}
+    #bg {position: absolute; width: 1450px; height: 700px; z-index: 0;}
+
+    /* New button style using an image */
+    .image-btn {
+      background: none;       /* removes button background */
+      border: none;           /* removes border */
+      padding: 0;             /* removes extra spacing */
+      cursor: pointer;
+    }
+
+    /* Image inside button */
+    .image-btn img {
+      display: block;
+      width: 200px;           /* adjust as needed */
+      height: 200px;
+      transition: transform 0.2s ease, box-shadow 0.1s ease;
+    }
+
+    /* Hover effect (like your previous .generic-btn:hover) */
+    .image-btn:hover img {
+      transform: scale(1.3);
+    }
+
+    /* Click effect (like your previous .generic-btn:active) */
+    .image-btn:active img {
+      transform: scale(1.05);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+    }
+
+  
+
+
+    .startMenu > *:not(#bg) {
+      position: relative;
+      z-index: 1;
+    }
+
+    #player-glow,
+    #player-icon,
+    #block,
+    #block2,
+    #spike {
+      z-index: 2;
+    }
+
+
+
+    .pause-menu {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      z-index: 20;
+    }
+
+    .pause-menu.hidden {
+      display: none;
+    }
+
+    .howPlayMenu {
+      position: absolute;
+    }
+
+    .howPlayMenu.hidden {
+      display: none;
+    }
+
+    .pause-menu button {
+      font-size: 20px;
+      padding: 10px 24px;
+      cursor: pointer;
+    }
+
+    .generic-btn {
+        font-size: 40px;
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        border: 2px inset;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 
+            transform 0.5s ease,
+            box-shadow 0.1s ease;
+        }
+
+    .generic-btn:hover {
+        transform: scale(1.1)
+    }
+
+    .generic-btn:active {
+        transform: scale(1.05);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .mainLevelsTitle {
+      color: #ffffff;
+      font-family: "Comic Sans MS", "Comic Sans", cursive;
+    }
+
+    .bigTitle {
+      color: #ffffff;
+      font-family: "Comic Sans";
+      font-size: 100px;
+    }
+
+    .startMenu {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      z-index: 20;
+    }
+
+    .startMenu.hidden {
+      display: none;
+    }
+
+    .settingsMenu {
+      position: absolute;
+    }
+
+    .settingsMenu.hidden {
+      display: none;
+    }
+
+    #settingsBtnPause {
+      position: absolute;
+      top: 500px;
+      left: 1250px;
+      transform: scale(0.25);
+      background: none;        /* Removes default background color */
+      border: none;            /* Removes the default button border */
+      padding: 0;              /* Removes extra spacing around the image */
+      cursor: pointer;         /* Re-adds the hand icon when hovering */
+      outline: inherit;        
+    }
+
+    #settingsMenu {
+      position: absolute;
+      top: 50px;
+      left: 1300px;
+    }
+
+
+  </style>
+
+</head>
+
+<body>
+  <div id="canvasContainer">
+    <canvas id="myCanvas" width="1450" height="700"></canvas>
+
+    <div id="pauseMenu" class="pause-menu hidden">
+      <button id="resumeBtn" class="generic-btn">Resume</button>
+      <button id="restartBtn" class="generic-btn">Restart</button>
+      <button id="quitBtn" class="generic-btn">Quit</button>
+      <button id="switchLvl" class="generic-btn">Custom Levels</button>
+      <button id="playInstructions" class="generic-btn">How to Play</button>
+
+      <button id="settingsBtnPause">
+        <img src="./trollgame_images/settings-icon-new.png">
+      </button>
+
+      <div id="settingsMenu" class="settingsMenu hidden">
+        <h3 class="mainLevelsTitle">Volume</h3>
+        <input class="mainLevelsTitle" type="range" id="volumeRange" min="0" max="100" value="100">
+        <h3 class="mainLevelsTitle">Speedrun Timer</h3>
+        <input class="mainLevelsTitle" type="checkbox" id="speedrunTimerEnabled">
+      </div>
+
+      <div id="howToPlayMenu" class="howPlayMenu hidden">
+        <h3 id="howToPlayInfo" class="mainLevelsTitle">Idk, figure it out! The only three controls are the up, left, and right arrows.</h3>
+      </div>
+
+
+
+      <h2 class="mainLevelsTitle">Main Levels:</h2>
+      <button id="lvl1" class="generic-btn">1</button>
+      <button id="lvl2" class="generic-btn">2</button>
+      <button id="lvl3" class="generic-btn">3</button>
+      <button id="lvl4" class="generic-btn">4</button>
+      <button id="lvl5" class="generic-btn">5</button>
+      <button id="lvl6" class="generic-btn">6</button>
+      <button id="lvl7" class="generic-btn">7</button>
+      <button id="lvl8" class="generic-btn">8</button>
+      <button id="lvl9" class="generic-btn">9</button>
+      <button id="lvl10" class="generic-btn">10</button>
+
+
+    </div>
+
+    <div id="startMenu" class="startMenu">
+      <img id="bg" src="./trollgame_bg_images/sewer.png">
+      <h1 class="bigTitle">SEWERS AND DEATH</h1>
+      <button id="outOfStartMenu" class="image-btn">
+        <img src="./trollgame_images/play_button.png" alt="Play">
+      </button>
+      <div id="playerImg">
+        <img id="player-glow" src="./trollgame_images/player/player_glow2.png">
+        <img id="player-icon" src="./trollgame_images/player/standing_stillnew.png">
+      </div>
+      <img id="block" src="./trollgame_images/level_elements/block_texture.png">
+      <img id="block2" src="./trollgame_images/level_elements/block_texture.png">
+      <img id="spike" src="./trollgame_images/level_elements/spike_up.png">
+
+    </div>
+  </div>
+
+
+  <script type="module" src="troll_script.js"></script>
+</body>
+</html>

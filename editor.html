@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Level Editor</title>
+  <style>
+    body { font-family: system-ui, Arial; margin: 0; display: flex; height: 100vh; }
+    #sidebar { width: 320px; padding: 12px; box-sizing: border-box; background:#f6f7f9; border-right:1px solid #ddd; overflow:auto; }
+    #canvasWrap { flex:1; display:flex; align-items:center; justify-content:center; background:#e9eef5; }
+    canvas { background:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.08); }
+    label { display:block; margin-top:8px; font-weight:600; }
+    .row { display:flex; gap:8px; margin-top:8px; }
+    button, select, input[type="number"] { padding:6px 8px; }
+    .toolBtn { margin-right:6px; padding:6px 10px; }
+    .muted { color:#666; font-size:13px; margin-top:6px; }
+    .list { max-height:140px; overflow:auto; border:1px solid #ddd; padding:6px; background:#fff; margin-top:6px; }
+    .item { padding:4px; border-bottom:1px solid #eee; font-size:13px; }
+    .controls { margin-top:12px; }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <h3>Level Editor</h3>
+
+    <label>Tool</label>
+    <div class="row">
+      <button class="toolBtn" id="toolBlock">Block</button>
+      <button class="toolBtn" id="toolSpike">Spike</button>
+      <button class="toolBtn" id="toolDeco">Deco Block</button>
+      <button class="toolBtn" id="toolZipEnd">Zip</button>
+      <button class="toolBtn" id="toolDeco2">Deco Block 2</button>
+      <button class="toolBtn" id="toolIce">Ice</button>
+    </div>
+ 
+    <label>Grid size</label>
+    <input id="gridSize" type="number" value="50" min="8" step="1">
+
+    <label>Spike orientation</label>
+    <select id="spikeOrientation">
+      <option value="1">Up</option>
+      <option value="2">Left</option>
+      <option value="3">Down</option>
+      <option value="4">Right</option>
+    </select>
+
+    <label>Move speed (blocks)</label>
+    <input id="moveSpeed" type="number" value="5" min="0" step="1">
+
+    <div class="controls">
+
+      <label>Background image (1450×700)</label>
+      <input
+        id="bgImageInput"
+        type="file"
+        accept="image/*"
+        style="display:block;margin-bottom:8px;"
+      >
+
+      <button id="exportJS">Export JS</button>
+
+      <input
+        id="fileInput"
+        type="file"
+        accept=".js"
+        style="display:block;margin-top:8px;"
+      >
+
+      <div class="muted">
+        Click canvas to place. Drag to move. Right-click to delete.
+        Ziplines need a start and end click.
+      </div>
+
+      <div style="margin-top:10px;">
+        <button id="clearBtn">Clear</button>
+        <button id="snapToggle">Snap: ON</button>
+      </div>
+    </div>
+
+    <label>Objects (click to select)</label>
+    <div class="list" id="objectList"></div>
+
+    <div style="margin-top:12px;">
+      <button id="openInGame">Open game (in new tab)</button>
+      <input id="gameUrl" placeholder="game file path (eg: /trollgame.html)" style="width:100%; margin-top:6px;">
+    </div>
+
+    <label>
+      Spawn X:
+      <input id="spawnX" type="number" step="50" />
+    </label>
+
+    <label>
+      Spawn Y:
+      <input id="spawnY" type="number" step="50" />
+    </label>
+
+    <button id="applySpawn">Apply Spawn</button>
+
+    <label>Key X <input id="keyX" type="number"></label>
+    <label>Key Y <input id="keyY" type="number"></label>
+    <button id="applyKey">Apply Key</button>
+
+
+  </div>
+
+  <div id="canvasWrap">
+    <canvas id="editorCanvas" width="1000" height="700"></canvas>
+  </div>
+
+  <script type="module" src="./editor.js"></script>
+</body>
+</html>
