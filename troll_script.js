@@ -212,6 +212,7 @@ function animate() {
 
     state.keyAnimationFinished = false; // reset for next level
     advanceLevel(nextLevel);
+    console.log("hello!")
   }
 
 
