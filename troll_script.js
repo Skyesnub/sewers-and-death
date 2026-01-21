@@ -197,7 +197,9 @@ function animate() {
   if (state.levelTransitioning) {state.inputLeft = false; state.inputRight = false;}
 
 
-  if (state.keyAnimationFinished) {
+  if (state.keyAnimationFinished && !state.levelLoading) {
+    state.levelLoading = true;
+
     let nextLevel = state.minilevelStr;
 
     if (nextLevel === "lvl1") nextLevel = "lvl2";
@@ -210,10 +212,13 @@ function animate() {
     else if (nextLevel === "lvl8") nextLevel = "lvl9";
     else if (nextLevel === "lvl9") nextLevel = "lvl10";
 
-    state.keyAnimationFinished = false; // reset for next level
-    advanceLevel(nextLevel);
-    console.log("hello!")
+    state.keyAnimationFinished = false;
+
+    advanceLevel(nextLevel).then(() => {
+      state.levelLoading = false;
+    });
   }
+
 
 
 

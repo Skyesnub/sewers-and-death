@@ -28,6 +28,8 @@ export const state = {
   coyoteChecker: 5,
   isonGround: false,
 
+  levelLoading: false,
+
   xAcceleration: 0.25,
   initAnimSpeed: 1,
   maxAnimSpeed: 10,
