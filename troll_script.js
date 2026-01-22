@@ -200,24 +200,18 @@ function animate() {
   if (state.keyAnimationFinished && !state.levelLoading) {
     state.levelLoading = true;
 
-    let nextLevel = state.minilevelStr;
-
-    if (nextLevel === "lvl1") nextLevel = "lvl2";
-    else if (nextLevel === "lvl2") nextLevel = "lvl3";
-    else if (nextLevel === "lvl3") nextLevel = "lvl4";
-    else if (nextLevel === "lvl4") nextLevel = "lvl5";
-    else if (nextLevel === "lvl5") nextLevel = "lvl6";
-    else if (nextLevel === "lvl6") nextLevel = "lvl7";
-    else if (nextLevel === "lvl7") nextLevel = "lvl8";
-    else if (nextLevel === "lvl8") nextLevel = "lvl9";
-    else if (nextLevel === "lvl9") nextLevel = "lvl10";
+    const completed = state.completedLevel;
+    const levelNum = Number(completed.replace("lvl", ""));
+    const nextLevel = `lvl${levelNum + 1}`;
 
     state.keyAnimationFinished = false;
+    state.completedLevel = null;
 
-    advanceLevel(nextLevel).then(() => {
+    advanceLevel(nextLevel).finally(() => {
       state.levelLoading = false;
     });
   }
+
 
 
 

@@ -29,6 +29,8 @@ export const state = {
   isonGround: false,
 
   levelLoading: false,
+  completedLevel: null,
+
 
   xAcceleration: 0.25,
   initAnimSpeed: 1,

@@ -107,7 +107,7 @@ function keyAnimation() {
         state.keyFallSpeed = (state.keyFallSpeed || 0) + FALL_ACCEL;
         state.keyY += state.keyFallSpeed;
 
-        if (state.keyY > canvas.height + 100) state.keyAnimationFinished = true;
+        if (state.keyY > canvas.height + 100) state.keyAnimationFinished = true; state.completedLevel = state.minilevelStr;
     }
 
     // small horizontal drift
