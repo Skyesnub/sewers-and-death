@@ -197,24 +197,22 @@ function animate() {
   if (state.levelTransitioning) {state.inputLeft = false; state.inputRight = false;}
 
 
-  if (state.keyAnimationFinished && !state.levelLoading) {
-    state.levelLoading = true;
+  if (state.pendingLevelChange && !state.levelLoading) {
+      state.levelLoading = true;
 
-    const completed = state.completedLevel;
-    const levelNum = Number(completed.replace("lvl", ""));
-    const nextLevel = `lvl${levelNum + 1}`;
+      const completed = state.pendingLevelChange;
+      state.pendingLevelChange = null; // consume latch
 
-    state.keyAnimationFinished = false;
-    state.completedLevel = null;
 
-    advanceLevel(nextLevel).finally(() => {
-      state.levelLoading = false;
-    });
+      const levelNum = Number(completed.replace("lvl", ""));
+      const nextLevel = `lvl${levelNum + 1}`;
+
+      advanceLevel(nextLevel).finally(() => {
+          state.levelLoading = false;
+      });
   }
 
-
-
-
+  console.log(state.levelTransitioning, state.keyCollected, state.keyAnimationFinished, state.keySnapped, state.keyHopDone)
 
   if (state.speedrunTimerExists) {
     ctx.fillStyle = "white";

@@ -52,6 +52,12 @@ export async function loadLevel() {
   state.currentZipline = null;
 
   state.levelTransitioning = false;
+  state.keyCollected = false;
+  state.keyAnimationFinished = false;
+  state.keySnapped = false;
+  state.keyHopDone = false;
+  state.keyFallSpeed = 0;
+  state.keyRotation = 0;
 
   state.inputLeft = false;
   state.inputRight = false;

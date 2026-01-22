@@ -107,7 +107,15 @@ function keyAnimation() {
         state.keyFallSpeed = (state.keyFallSpeed || 0) + FALL_ACCEL;
         state.keyY += state.keyFallSpeed;
 
-        if (state.keyY > canvas.height + 100) state.keyAnimationFinished = true; state.completedLevel = state.minilevelStr;
+        if (state.keyY > canvas.height + 100) {
+            state.keyAnimationFinished = true;
+            
+            // Latch for main loop
+            if (!state.pendingLevelChange) {
+                state.pendingLevelChange = state.minilevelStr;
+                console.log("Latch set! minilevelStr =", state.minilevelStr);
+            }
+        }
     }
 
     // small horizontal drift

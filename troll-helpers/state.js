@@ -30,6 +30,7 @@ export const state = {
 
   levelLoading: false,
   completedLevel: null,
+  pendingLevelChange: null,
 
 
   xAcceleration: 0.25,
