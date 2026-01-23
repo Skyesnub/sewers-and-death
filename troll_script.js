@@ -29,13 +29,9 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' && !state.levelTransitioning) {if (!state.inputRight) {state.curAnimSpeed = state.initAnimSpeed}; state.inputRight = true; state.speedrunStarted = true;}
   if (e.key === 'ArrowUp' && state.adminMode) {state.goingUpAdmin = true; state.speedrunStarted = true;}
   if (e.key === 'ArrowDown' && state.adminMode) {state.goingDownAdmin = true; state.speedrunStarted = true;}
-  if (e.key === 'h') state.hitboxes = !state.hitboxes;
   if (e.key === 'r') { state.restart.currentTime = 0; state.restart.play(); death(0); }
   if (e.key === 'a') toggleAdminMode();
-  if (e.key === 't') {state.hitboxTrailOn = !state.hitboxTrailOn; state.hitboxTrail = []}
 });
-
-
 
 
 document.addEventListener('keyup', e => {
@@ -69,7 +65,9 @@ const restartBtn = document.getElementById("restartBtn"), changeLevelBtn = docum
 quitBtn = document.getElementById("quitBtn"), outStartMenu = document.getElementById("outOfStartMenu"), settingsBtn = document.getElementById("settingsBtnPause")
 
 const currentVolume = document.getElementById("volumeRange");
-const checkBoxSpeedrunTimer = document.getElementById("speedrunTimerEnabled")
+const checkBoxSpeedrunTimer = document.getElementById("speedrunTimerEnabled");
+const checkBoxHitboxes = document.getElementById("hitboxesEnabledCheck");
+const checkBoxHitboxTrail = document.getElementById("hitboxTrailEnabledCheck")
 
 
 //button onclicks
@@ -136,10 +134,15 @@ function toggleAdminMode() {
   } else state.adminMode = false;
 }
 
-function handleVolumeAndSpeedrun() {
+function handleSettings() {
   state.currentVolume = currentVolume.value;
 
   state.speedrunTimerExists = checkBoxSpeedrunTimer.checked
+
+  state.hitboxes = checkBoxHitboxes.checked
+
+  if (!state.hitboxTrailOn) {state.hitboxTrail = []}
+  state.hitboxTrailOn = checkBoxHitboxTrail.checked
 
 
   //console.log(state.currentVolume)
@@ -161,7 +164,7 @@ function animate() {
   requestAnimationFrame(animate);
 
   //Change volume based on slider and all assets based on it
-  handleVolumeAndSpeedrun()
+  handleSettings()
 
   if (isPaused()) return;
 
