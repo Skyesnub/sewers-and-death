@@ -181,7 +181,11 @@ function animate() {
   updateTimers()
 
   // Physics update
-  if (!state.onZipline) applyPhysics();
+  if (!state.onZipline && !state.adminMode) applyPhysics();
+  if (state.adminMode) {
+    if (state.inputLeft) {state.playerX -= state.playerAnimSpeed}
+    if (state.inputRight) {state.playerX += state.playerAnimSpeed}
+  }
 
   // Zipline attachment
   if (!state.onZipline && !state.adminMode) checkZiplineAttachment();
