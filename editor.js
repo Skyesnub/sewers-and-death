@@ -12,17 +12,26 @@ const toolDeco = document.getElementById('toolDeco');
 const toolZipEnd = document.getElementById('toolZipEnd');
 const toolDeco2 = document.getElementById('toolDeco2');
 const toolIce = document.getElementById('toolIce');
+const toolCloud1 = document.getElementById('toolCloud1');
+const toolCloud2 = document.getElementById('toolCloud2');
+const toolCloud3 = document.getElementById('toolCloud3');
 const exportJS = document.getElementById('exportJS');
 const fileInput = document.getElementById('fileInput');
 const bgImageInput = document.getElementById('bgImageInput');
 const gridSizeInput = document.getElementById('gridSize');
 const spikeOrientation = document.getElementById('spikeOrientation');
-const moveSpeedInput = document.getElementById('moveSpeed');
 const objectList = document.getElementById('objectList');
 const clearBtn = document.getElementById('clearBtn');
 const snapToggle = document.getElementById('snapToggle');
 const openInGame = document.getElementById('openInGame');
 const gameUrl = document.getElementById('gameUrl');
+const cloudGroupInput = document.getElementById('cloudGroupInput');
+
+
+const cloudImg1 = new Image(); cloudImg1.src = "./trollgame_images/cloud-left.png";
+const cloudImg2 = new Image(); cloudImg2.src = "./trollgame_images/cloud-middle.png";
+const cloudImg3 = new Image(); cloudImg3.src = "./trollgame_images/cloud-right.png";
+
 
 let snapEnabled = true;
 let currentTool = 'block';
@@ -36,6 +45,7 @@ const worldWidth = 1450;
 const worldHeight = 700;
 const keysDown = {};
 let currentDecoVariant = 1;
+let currentCloudGroupId = 1;
 
 let backgroundImage = null;
 let backgroundImageName = null;
@@ -49,6 +59,8 @@ let editDecorations = [];
 
 const BLOCK_W = 50;
 const BLOCK_H = 50;
+
+let currentCloudVariant = 1;
 
 // --- Global variables ---
 let clipboard = []; // stores copied items
@@ -82,6 +94,10 @@ document.getElementById("applySpawn").onclick = () => {
 let keyLocation = {
   x: 0,
   y: 0
+};
+
+cloudGroupInput.onchange = () => {
+  currentCloudGroupId = Number(cloudGroupInput.value) || 1;
 };
 
 const keyXInput = document.getElementById("keyX");
@@ -241,12 +257,21 @@ function render() {
   for (const b of editBlocks) {
     if (b.material === 'ice') {
       ctx.fillStyle = '#9ee7ff';
-    } else {
-      ctx.fillStyle = '#0f5193ff';
+      ctx.fillRect(b.x - cameraX, b.y - cameraY, BLOCK_W, BLOCK_H);
     }
 
-    ctx.fillRect(b.x - cameraX, b.y - cameraY, BLOCK_W, BLOCK_H);
+    else if (b.material === 'cloud') {
+      if (b.variant === 1) ctx.drawImage(cloudImg1, b.x - cameraX - 10, b.y - cameraY - 20, 60, 70) // left
+      if (b.variant === 2) ctx.drawImage(cloudImg2, b.x - cameraX, b.y - cameraY - 20, 50, 70) // middle
+      if (b.variant === 3) ctx.drawImage(cloudImg3, b.x - cameraX, b.y - cameraY - 20, 60, 70) // right
+    }
+
+    else {
+      ctx.fillStyle = '#0f5193ff';
+      ctx.fillRect(b.x - cameraX, b.y - cameraY, BLOCK_W, BLOCK_H);
+    }
   }
+
 
 
   // draw spawn
@@ -309,7 +334,17 @@ function updateObjectList() {
   const addLine = (label, index, type) => {
     const el = document.createElement('div'); el.className = 'item'; el.textContent = `${label} (${type} #${index})`; el.onclick = () => { console.log('selected', type, index); }; objectList.appendChild(el);
   };
-  editBlocks.forEach((b,i) => addLine(`Block @${b.x},${b.y}`, i, 'block'));
+  editBlocks.forEach((b,i) => {
+    if (b.material === 'cloud') {
+      addLine(
+        `Cloud g${b.cloudGroupId} v${b.variant} @${b.x},${b.y}`,
+        i,
+        'block'
+      );
+    } else {
+      addLine(`Block @${b.x},${b.y}`, i, 'block');
+    }
+  });
   editSpikes.forEach((s,i) => addLine(`Spike @${s.x},${s.y} o${s.orientation}`, i, 'spike'));
   editDecorations.forEach((d,i) =>
     addLine(`Deco @${d.x},${d.y}`, i, 'deco')
@@ -429,7 +464,8 @@ canvas.addEventListener('mousedown', (evt) => {
       y: snappedY,
       w: BLOCK_W,
       h: BLOCK_H,
-      variant: currentDecoVariant
+      variant: currentDecoVariant,
+
     });
     updateObjectList();
     return;
@@ -442,6 +478,21 @@ canvas.addEventListener('mousedown', (evt) => {
       updateObjectList(); 
     } else pendingZipStart={x:snappedX,y:snappedY}; 
     return; 
+  }
+
+  if (currentTool === 'cloud') {
+    editBlocks.push({
+      x: snappedX,
+      y: snappedY,
+      material: 'cloud',
+      variant: currentCloudVariant,
+      cloudGroupId: currentCloudGroupId,
+      momentum: 0,
+      originalX: snappedX,
+      originalY: snappedY
+    });
+    updateObjectList();
+    return;
   }
 });
 
@@ -487,6 +538,24 @@ toolIce.onclick = () => {
   currentTool = 'ice';
   highlightTool();
 };
+toolCloud1.onclick = () => {
+  currentTool = 'cloud';
+  currentCloudVariant = 1;
+  highlightTool();
+};
+
+toolCloud2.onclick = () => {
+  currentTool = 'cloud';
+  currentCloudVariant = 2;
+  highlightTool();
+};
+
+toolCloud3.onclick = () => {
+  currentTool = 'cloud';
+  currentCloudVariant = 3;
+  highlightTool();
+};
+
 
 
 toolZipEnd.onclick=()=>{currentTool='zipend';highlightTool();pendingZipStart=null;};

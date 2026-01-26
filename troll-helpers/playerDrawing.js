@@ -73,5 +73,11 @@ function resetAfterDeath() {
   state.blocks.forEach(block => {
     block.trolledYet = false;
     block.doneMoving = false;
+
+    if (block.material === 'cloud') {
+      block.momentum = 0;
+      block.x = block.originalX
+      block.y = block.originalY
+    }
   });
 }

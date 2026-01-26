@@ -18,6 +18,7 @@ import { applyPhysics } from './troll-helpers/collisions.js';
 import { checkSpikeCollision, death } from './troll-helpers/spike-death.js';
 import { moveAndDrawKey } from './troll-helpers/key-helper.js';
 import { iceDetection } from './troll-helpers/spike-death.js';
+import { updateClouds } from './troll-helpers/collisions.js';
 //default level is level 1
 advanceLevel("lvl1")
 pauseGame();
@@ -180,9 +181,16 @@ function animate() {
   // Timers for jump cooldown and zipline jump off cooldown
   updateTimers()
 
+  if (!state.dead) {
+    updateClouds();
+  }
+
+
+
   // Physics update
   if (!state.onZipline && !state.adminMode) applyPhysics();
   if (state.adminMode) {
+    state.playerAnimSpeed = 10
     if (state.inputLeft) {state.playerX -= state.playerAnimSpeed}
     if (state.inputRight) {state.playerX += state.playerAnimSpeed}
   }
@@ -197,6 +205,7 @@ function animate() {
   if (!state.adminMode) checkSpikeCollision();
 
   iceDetection();
+
 
   //draw end key
   moveAndDrawKey();
@@ -218,8 +227,6 @@ function animate() {
           state.levelLoading = false;
       });
   }
-
-  console.log(state.levelTransitioning, state.keyCollected, state.keyAnimationFinished, state.keySnapped, state.keyHopDone)
 
   if (state.speedrunTimerExists) {
     ctx.fillStyle = "white";

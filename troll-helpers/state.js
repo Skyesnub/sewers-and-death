@@ -10,7 +10,12 @@ import {
   glowingKey,
   decoBlockTexture2, iceBlockTexture,
   finishLevelSound,
-  jumpSound
+  jumpSound,
+  cloud1Texture,
+  cloud2Texture,
+  cloud3Texture,
+  heavenBlockTexture,
+  heavenDecoBlockTexture
 } from './assets.js';
 
 export const state = {
@@ -32,6 +37,8 @@ export const state = {
   completedLevel: null,
   pendingLevelChange: null,
 
+  cloudMoveUpSpeed: 3,
+  playerOnCloud: false,
 
   xAcceleration: 0.25,
   initAnimSpeed: 1,
@@ -92,6 +99,12 @@ export const state = {
   spike2,
   spike3,
   spike4,
+  heavenBlockTexture,
+  heavenDecoBlockTexture,
+
+  cloud1Texture,
+  cloud2Texture,
+  cloud3Texture,
 
   leMeow,
   vineBoom,

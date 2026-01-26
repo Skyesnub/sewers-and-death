@@ -67,6 +67,12 @@ decoBlockTexture2.src = "./trollgame_images/level_elements/deco_block2.png"
 export const glowingKey = new Image();
 glowingKey.src = "./trollgame_images/level_elements/glowing-key2.png"
 
+export const heavenBlockTexture = new Image();
+heavenBlockTexture.src = './trollgame_images/level_elements/heaven_block2.png'
+
+export const heavenDecoBlockTexture = new Image();
+heavenDecoBlockTexture.src = './trollgame_images/level_elements/heaven_deco_block.png'
+
 // ================= SPIKES =================
 
 export const spike1 = new Image();
@@ -80,3 +86,15 @@ spike3.src = "./trollgame_images/level_elements/spike_down.png";
 
 export const spike4 = new Image();
 spike4.src = "./trollgame_images/level_elements/spike_left.png";
+
+
+// ==================== CLOUDS ====================
+
+export const cloud1Texture = new Image();
+cloud1Texture.src = "./trollgame_images/cloud-left.png"
+
+export const cloud2Texture = new Image();
+cloud2Texture.src = "./trollgame_images/cloud-middle.png"
+
+export const cloud3Texture = new Image();
+cloud3Texture.src = "./trollgame_images/cloud-right.png"

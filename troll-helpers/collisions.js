@@ -2,7 +2,7 @@ import { state } from "./state.js";
 
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
-
+import { death } from './spike-death.js';
 
 
 export function applyPhysics() {
@@ -70,8 +70,15 @@ function handleCollisions(startX, startY, dx, dy) {
   // --- Horizontal movement ---
   newX += dx;
   for (const block of state.blocks) {
-    const blockBox = { left: block.x, right: block.x + 50, top: block.y, bottom: block.y + 50 };
+    let blockBox = { left: block.x, right: block.x + 50, top: block.y, bottom: block.y + 50 };
+    if (block.material === 'cloud') {
+      if (block.variant === 1) {blockBox = {left: block.x + 10, right: block.x + 50, top: block.y + 20, bottom: block.y + 40 };}
+      else if (block.variant === 2) {blockBox = {left: block.x, right: block.x + 50, top: block.y + 20, bottom: block.y + 40 };}
+      else if (block.variant === 3) {blockBox = {left: block.x, right: block.x + 40, top: block.y + 20, bottom: block.y + 40 };}
+    }
     const hb = playerHitbox();
+
+    
 
     if (hb.right > blockBox.left && hb.left < blockBox.right && hb.bottom > blockBox.top && hb.top < blockBox.bottom) {
       if (dx > 0) { // moving right
@@ -82,12 +89,21 @@ function handleCollisions(startX, startY, dx, dy) {
         state.collisionLeft = true;
       }
     }
+
+    if (state.collisionLeft || state.collisionRight) {
+      console.log(state.collisionLeft, state.collisionRight)
+    }
   }
 
   // --- Vertical movement ---
   newY += dy;
   for (const block of state.blocks) {
-    const blockBox = { left: block.x, right: block.x + 50, top: block.y, bottom: block.y + 50 };
+    let blockBox = { left: block.x, right: block.x + 50, top: block.y, bottom: block.y + 50 };
+    if (block.material === 'cloud') {
+      if (block.variant === 1) {blockBox = {left: block.x + 10, right: block.x + 50, top: block.y + 20, bottom: block.y + 40 };}
+      else if (block.variant === 2) {blockBox = {left: block.x, right: block.x + 50, top: block.y + 20, bottom: block.y + 40 };}
+      else if (block.variant === 3) {blockBox = {left: block.x, right: block.x + 40, top: block.y + 20, bottom: block.y + 40 };}
+    }
     const hb = playerHitbox();
 
     if (hb.right > blockBox.left && hb.left < blockBox.right && hb.bottom > blockBox.top && hb.top < blockBox.bottom) {
@@ -122,3 +138,117 @@ function handleCollisions(startX, startY, dx, dy) {
   
 }
 
+export function updateClouds() {
+  const groups = new Map();
+
+  // --- Build cloud groups ---
+  for (const b of state.blocks) {
+    if (b.material !== 'cloud') continue;
+
+    if (!groups.has(b.cloudGroupId)) {
+      groups.set(b.cloudGroupId, []);
+    }
+    groups.get(b.cloudGroupId).push(b);
+
+    // Ensure each cloud has originalY and momentum
+    b.originalY ??= b.y;
+    b.momentum ??= 0;
+  }
+
+  // --- Player hitbox ---
+  const hb = {
+    left: state.playerX + state.playerHitbox.offsetX,
+    right: state.playerX + state.playerHitbox.offsetX + state.playerHitbox.width,
+    top: state.playerY + state.playerHitbox.offsetY,
+    bottom: state.playerY + state.playerHitbox.offsetY + state.playerHitbox.height
+  };
+
+  // --- Process each cloud group ---
+  for (const clouds of groups.values()) {
+    const prevY = clouds[0].y;
+    let groupMomentum = clouds[0].momentum;
+
+    clouds[0].wasPlayerOnTop ??= false;
+    let playerOnTopNow = false;
+
+    // --- Collision / standing detection ---
+    for (const c of clouds) {
+      let horizontalOverlap = hb.right > c.x + 10 && hb.left < c.x + 40;
+      if (c.variant == 1 || c.variant == 2) {horizontalOverlap = hb.right > c.x + 10 && hb.left < c.x + 50;}
+
+      
+      //ctx.fillStyle = 'blue';
+      //if (c.variant == 1 || c.variant == 2) {ctx.fillRect(c.x + 10, 100, 50, 200)}
+      //else {ctx.fillRect(c.x + 10, 100, 30, 200)}
+      // This stuff that is commented out was for hitbox purposes
+    
+      // Allow player to be slightly inside the cloud for persistent detection
+      const standingOn =
+        hb.bottom >= c.y - 10 &&
+        hb.bottom <= c.y + 20; // 20 ~ cloud height
+
+      if (horizontalOverlap && standingOn) {
+        playerOnTopNow = true;
+        break;
+      }
+    }
+
+
+    // --- Apply landing impulse once ---
+    if (playerOnTopNow && !clouds[0].wasPlayerOnTop) {
+      let impulse = Math.min(state.velo, 30) * 0.5; // tune as needed
+      if (state.velo < 0) {impulse = 0}
+      groupMomentum += impulse;
+    }
+
+    clouds[0].wasPlayerOnTop = playerOnTopNow;
+
+    // --- Apply damping ---
+    groupMomentum *= 0.925;
+    if (Math.abs(groupMomentum) < 0.05) groupMomentum = 0;
+
+    // --- Move clouds ---
+    if (groupMomentum !== 0) {
+      for (const c of clouds) {
+        c.y += groupMomentum;
+      }
+    } else {
+      // Return to original position slowly
+      for (const c of clouds) {
+        c.y = Math.max(c.y - state.cloudMoveUpSpeed, c.originalY);
+      }
+    }
+
+    // --- Sync momentum ---
+    for (const c of clouds) {
+      c.momentum = groupMomentum;
+    }
+
+    // --- Move player along with the cloud ---
+    const deltaY = clouds[0].y - prevY;
+    if (playerOnTopNow && deltaY !== 0) {
+      state.playerY += deltaY;
+    }
+
+    // kill player via squashing
+    for (const b of state.blocks) {
+      const playerLeft = state.playerX + state.playerHitbox.offsetX
+      const playerRight = state.playerX + state.playerHitbox.offsetX + state.playerHitbox.width;
+      const playerTop = state.playerY + state.playerHitbox.offsetY;
+      const playerBottom = state.playerY + state.playerHitbox.offsetY + state.playerHitbox.height;
+
+      let hbLeft = b.x + 1
+      let hbRight = b.x + 49
+      let hbTop = b.y + 45
+      let hbBottom = b.y + 50
+
+      if (playerOnTopNow) {
+        if (playerRight > hbLeft &&
+            playerLeft < hbRight &&
+            playerTop < hbBottom &&
+            playerBottom > hbTop
+        ) { death(1) }
+      }
+    }
+  }
+}

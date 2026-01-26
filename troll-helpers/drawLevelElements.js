@@ -30,6 +30,12 @@ export function drawLevelElements() {
   for (const block of state.blocks) {
     if (block.material === 'block') {ctx.drawImage(state.blockTexture, block.x, block.y, 50, 50);}
     if (block.material === 'ice') {ctx.drawImage(state.iceBlockTexture, block.x, block.y, 50, 50);}
+
+    if (block.material === 'cloud') {
+      if (block.variant === 1) {ctx.drawImage(state.cloud1Texture, block.x - 10, block.y - 20, 60, 70)}
+      if (block.variant === 2) {ctx.drawImage(state.cloud2Texture, block.x, block.y - 20, 50, 70)}
+      if (block.variant === 3) {ctx.drawImage(state.cloud3Texture, block.x, block.y - 20, 60, 70)}
+    }
   }
 
  // --- Draw ziplines ---
@@ -81,12 +87,14 @@ export function drawLevelElements() {
     ctx.strokeStyle = 'blue';
     ctx.lineWidth = 2;
     state.blocks.forEach(block => {
-      ctx.strokeRect (
-        block.x,
-        block.y,
-        50,
-        50
-      )
+      if (block.material === 'cloud') {
+        if (block.variant === 1) {ctx.strokeRect (block.x + 10, block.y + 20, 40, 20)}
+        if (block.variant === 2) {ctx.strokeRect (block.x, block.y + 20, 50, 20)}
+        if (block.variant === 3) {ctx.strokeRect (block.x, block.y + 20, 40, 20)}
+      }
+      else {
+        ctx.strokeRect (block.x, block.y, 50, 50)
+      }
     });
   }
 
