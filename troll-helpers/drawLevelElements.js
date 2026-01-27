@@ -26,12 +26,26 @@ export function drawLevelElements() {
  
 
   // --- Draw spikes ---
-  for (const spike of state.spikes) {
-    switch(spike.orientation) {
-      case 1: ctx.drawImage(state.spike1, spike.x, spike.y, 50, 50); break;
-      case 2: ctx.drawImage(state.spike2, spike.x, spike.y, 50, 50); break;
-      case 3: ctx.drawImage(state.spike3, spike.x, spike.y, 50, 50); break;
-      case 4: ctx.drawImage(state.spike4, spike.x, spike.y, 50, 50); break;
+
+  console.log(state.levelPhase)
+  if (state.levelPhase === 'sewer') {
+    for (const spike of state.spikes) {
+      switch(spike.orientation) {
+        case 1: ctx.drawImage(state.spike1, spike.x, spike.y, 50, 50); break;
+        case 2: ctx.drawImage(state.spike2, spike.x, spike.y, 50, 50); break;
+        case 3: ctx.drawImage(state.spike3, spike.x, spike.y, 50, 50); break;
+        case 4: ctx.drawImage(state.spike4, spike.x, spike.y, 50, 50); break;
+      }
+    }
+  }
+  if (state.levelPhase === 'heaven') {
+    for (const spike of state.spikes) {
+      switch(spike.orientation) {
+        case 1: ctx.drawImage(state.heavenspike1, spike.x, spike.y, 50, 50); break;
+        case 2: ctx.drawImage(state.heavenspike2, spike.x, spike.y, 50, 50); break;
+        case 3: ctx.drawImage(state.heavenspike3, spike.x, spike.y, 50, 50); break;
+        case 4: ctx.drawImage(state.heavenspike4, spike.x, spike.y, 50, 50); break;
+      }
     }
   }
 
@@ -57,7 +71,9 @@ export function drawLevelElements() {
 
  // --- Draw ziplines ---
   for (const zipline of state.ziplines) {
-    ctx.strokeStyle = '#7d7d7dff';
+    if (state.levelPhase === 'sewer') {ctx.strokeStyle = '#7d7d7dff'}
+    if (state.levelPhase === 'heaven') {ctx.strokeStyle = '#3754b4ff'}
+
     ctx.lineWidth = 5;
     ctx.lineCap = 'round';
     ctx.beginPath();

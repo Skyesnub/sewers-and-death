@@ -179,19 +179,25 @@ export function updateClouds() {
       //else {ctx.fillRect(c.x + 10, 100, 30, 200)}
       // This stuff that is commented out was for hitbox purposes
     
-      // Allow player to be slightly inside the cloud for persistent detection
+     
       const standingOn =
-        hb.bottom >= c.y - 10 &&
+        hb.bottom >= c.y + 0 &&
         hb.bottom <= c.y + 40; // 40 ~ cloud height DO NOT CHANGE THIS IT CAN COMPLETELY BREAK STANDINGON
+
+      //hitbox visualization for top of clouds
+      if (state.hitboxes) {
+        ctx.strokeStyle = 'orange'
+        ctx.strokeRect(c.x, c.y, 50, 35)
+      }
+
 
 
       if (horizontalOverlap && standingOn) {
         playerOnTopNow = true;
         break;
       }
-      console.log(horizontalOverlap, standingOn)
-    }
 
+    }
 
     // --- Apply landing impulse once ---
     if (playerOnTopNow && !clouds[0].wasPlayerOnTop) {

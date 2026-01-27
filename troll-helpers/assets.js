@@ -87,6 +87,17 @@ spike3.src = "./trollgame_images/level_elements/spike_down.png";
 export const spike4 = new Image();
 spike4.src = "./trollgame_images/level_elements/spike_left.png";
 
+export const heavenspike1 = new Image();
+heavenspike1.src = "./trollgame_images/level_elements/heaven-spike-up.png";
+
+export const heavenspike2 = new Image();
+heavenspike2.src = "./trollgame_images/level_elements/heaven-spike-right.png";
+
+export const heavenspike3 = new Image();
+heavenspike3.src = "./trollgame_images/level_elements/heaven-spike-down.png";
+
+export const heavenspike4 = new Image();
+heavenspike4.src = "./trollgame_images/level_elements/heaven-spike-left.png";
 
 // ==================== CLOUDS ====================
 

@@ -7,6 +7,7 @@ import {
   PDeathR1, PDeathR2, PDeathR3,
   blockTexture, decoBlockTexture,
   spike1, spike2, spike3, spike4,
+  heavenspike1, heavenspike2, heavenspike3, heavenspike4,
   glowingKey,
   decoBlockTexture2, iceBlockTexture,
   finishLevelSound,
@@ -100,6 +101,10 @@ export const state = {
   spike2,
   spike3,
   spike4,
+  heavenspike1,
+  heavenspike2,
+  heavenspike3,
+  heavenspike4,
   heavenBlockTexture,
   heavenDecoBlockTexture,
 
