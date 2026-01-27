@@ -72,9 +72,9 @@ function handleCollisions(startX, startY, dx, dy) {
   for (const block of state.blocks) {
     let blockBox = { left: block.x, right: block.x + 50, top: block.y, bottom: block.y + 50 };
     if (block.material === 'cloud') {
-      if (block.variant === 1) {blockBox = {left: block.x + 10, right: block.x + 50, top: block.y + 20, bottom: block.y + 40 };}
-      else if (block.variant === 2) {blockBox = {left: block.x, right: block.x + 50, top: block.y + 20, bottom: block.y + 40 };}
-      else if (block.variant === 3) {blockBox = {left: block.x, right: block.x + 40, top: block.y + 20, bottom: block.y + 40 };}
+      if (block.variant === 1) {blockBox = {left: block.x + 10, right: block.x + 50, top: block.y + 25, bottom: block.y + 45 };}
+      else if (block.variant === 2) {blockBox = {left: block.x, right: block.x + 50, top: block.y + 25, bottom: block.y + 45 };}
+      else if (block.variant === 3) {blockBox = {left: block.x, right: block.x + 40, top: block.y + 25, bottom: block.y + 45 };}
     }
     const hb = playerHitbox();
 
@@ -90,9 +90,6 @@ function handleCollisions(startX, startY, dx, dy) {
       }
     }
 
-    if (state.collisionLeft || state.collisionRight) {
-      console.log(state.collisionLeft, state.collisionRight)
-    }
   }
 
   // --- Vertical movement ---
@@ -100,9 +97,9 @@ function handleCollisions(startX, startY, dx, dy) {
   for (const block of state.blocks) {
     let blockBox = { left: block.x, right: block.x + 50, top: block.y, bottom: block.y + 50 };
     if (block.material === 'cloud') {
-      if (block.variant === 1) {blockBox = {left: block.x + 10, right: block.x + 50, top: block.y + 20, bottom: block.y + 40 };}
-      else if (block.variant === 2) {blockBox = {left: block.x, right: block.x + 50, top: block.y + 20, bottom: block.y + 40 };}
-      else if (block.variant === 3) {blockBox = {left: block.x, right: block.x + 40, top: block.y + 20, bottom: block.y + 40 };}
+      if (block.variant === 1) {blockBox = {left: block.x + 10, right: block.x + 50, top: block.y + 25, bottom: block.y + 45 };}
+      else if (block.variant === 2) {blockBox = {left: block.x, right: block.x + 50, top: block.y + 25, bottom: block.y + 45 };}
+      else if (block.variant === 3) {blockBox = {left: block.x, right: block.x + 40, top: block.y + 25, bottom: block.y + 45 };}
     }
     const hb = playerHitbox();
 
@@ -185,18 +182,20 @@ export function updateClouds() {
       // Allow player to be slightly inside the cloud for persistent detection
       const standingOn =
         hb.bottom >= c.y - 10 &&
-        hb.bottom <= c.y + 20; // 20 ~ cloud height
+        hb.bottom <= c.y + 40; // 40 ~ cloud height DO NOT CHANGE THIS IT CAN COMPLETELY BREAK STANDINGON
+
 
       if (horizontalOverlap && standingOn) {
         playerOnTopNow = true;
         break;
       }
+      console.log(horizontalOverlap, standingOn)
     }
 
 
     // --- Apply landing impulse once ---
     if (playerOnTopNow && !clouds[0].wasPlayerOnTop) {
-      let impulse = Math.min(state.velo, 30) * 0.5; // tune as needed
+      let impulse = Math.min(state.velo, 30) * 0.5;
       if (state.velo < 0) {impulse = 0}
       groupMomentum += impulse;
     }
@@ -228,6 +227,7 @@ export function updateClouds() {
     const deltaY = clouds[0].y - prevY;
     if (playerOnTopNow && deltaY !== 0) {
       state.playerY += deltaY;
+      console.log("moved player by deltaY", deltaY)
     }
 
     // kill player via squashing

@@ -48,6 +48,7 @@ export const state = {
   momentum: 0,
 
   speedrunTimerExists: false,
+  levelPhase: 'sewer',
 
   // ziplines
   onZipline: false,

@@ -73,9 +73,12 @@ export function loadBackgroundImage(name) {
   if (!name) {
     state.backgroundImage = null;
     state.backgroundImageName = null;
+    state.levelPhase = 'sewer';
     return;
   }
   state.backgroundImageName = name;
   state.backgroundImage = new Image();
   state.backgroundImage.src = `./trollgame_bg_images/${name}`;
+  if (name === "sewer.png") {state.levelPhase = 'sewer'}
+  else if (name === "heaven-bg.jpg") {state.levelPhase = 'heaven'}
 }
