@@ -16,7 +16,8 @@ import {
   cloud2Texture,
   cloud3Texture,
   heavenBlockTexture,
-  heavenDecoBlockTexture
+  heavenDecoBlockTexture,
+  heavenDecoBlockTexture2
 } from './assets.js';
 
 export const state = {
@@ -107,6 +108,7 @@ export const state = {
   heavenspike4,
   heavenBlockTexture,
   heavenDecoBlockTexture,
+  heavenDecoBlockTexture2,
 
   cloud1Texture,
   cloud2Texture,

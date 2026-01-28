@@ -73,6 +73,9 @@ heavenBlockTexture.src = './trollgame_images/level_elements/heaven_block2.png'
 export const heavenDecoBlockTexture = new Image();
 heavenDecoBlockTexture.src = './trollgame_images/level_elements/heaven_deco_block.png'
 
+export const heavenDecoBlockTexture2 = new Image();
+heavenDecoBlockTexture2.src = './trollgame_images/level_elements/heaven-deco-block2.png'
+
 // ================= SPIKES =================
 
 export const spike1 = new Image();

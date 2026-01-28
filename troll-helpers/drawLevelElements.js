@@ -20,7 +20,14 @@ export function drawLevelElements() {
         ctx.drawImage(state.decoBlockTexture, d.x, d.y, 50, 50)
       }
     }
-    if (d.variant === 2) {ctx.drawImage(state.decoBlockTexture2, d.x, d.y, 50, 50)}
+    if (d.variant === 2) {
+      if (state.levelPhase === 'sewer') {
+        ctx.drawImage(state.decoBlockTexture2, d.x, d.y, 50, 50)
+      }
+      if (state.levelPhase === 'heaven') {
+        ctx.drawImage(state.heavenDecoBlockTexture2, d.x, d.y, 50, 50)
+      }
+    }
   }
 
  
@@ -61,7 +68,11 @@ export function drawLevelElements() {
       }
     }
     if (block.material === 'ice') {ctx.drawImage(state.iceBlockTexture, block.x, block.y, 50, 50);}
+  }
 
+  //drawing clouds (moved outside of main loop because of layring issue)
+
+  for (const block of state.blocks) {
     if (block.material === 'cloud') {
       if (block.variant === 1) {ctx.drawImage(state.cloud1Texture, block.x - 10, block.y - 35, 60, 85)}
       if (block.variant === 2) {ctx.drawImage(state.cloud2Texture, block.x, block.y - 35, 50, 85)}
