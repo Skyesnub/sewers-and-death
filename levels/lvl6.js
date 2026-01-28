@@ -70,21 +70,6 @@ export const levelCustom = {
       "ogY": 500
     },
     {
-      "x": 400,
-      "y": 500,
-      "moveX": 400,
-      "moveY": 500,
-      "moveSpeed": 5,
-      "trollMomentX": null,
-      "trollMomentY": null,
-      "trolledYet": false,
-      "trollRadius": 10,
-      "moveBack": false,
-      "doneMoving": false,
-      "ogX": 400,
-      "ogY": 500
-    },
-    {
       "x": 200,
       "y": 600,
       "moveX": 200,
@@ -157,51 +142,6 @@ export const levelCustom = {
       "moveBack": false,
       "doneMoving": false,
       "ogX": 300,
-      "ogY": 650
-    },
-    {
-      "x": 400,
-      "y": 550,
-      "moveX": 400,
-      "moveY": 550,
-      "moveSpeed": 5,
-      "trollMomentX": null,
-      "trollMomentY": null,
-      "trolledYet": false,
-      "trollRadius": 10,
-      "moveBack": false,
-      "doneMoving": false,
-      "ogX": 400,
-      "ogY": 550
-    },
-    {
-      "x": 400,
-      "y": 600,
-      "moveX": 400,
-      "moveY": 600,
-      "moveSpeed": 5,
-      "trollMomentX": null,
-      "trollMomentY": null,
-      "trolledYet": false,
-      "trollRadius": 10,
-      "moveBack": false,
-      "doneMoving": false,
-      "ogX": 400,
-      "ogY": 600
-    },
-    {
-      "x": 400,
-      "y": 650,
-      "moveX": 400,
-      "moveY": 650,
-      "moveSpeed": 5,
-      "trollMomentX": null,
-      "trollMomentY": null,
-      "trolledYet": false,
-      "trollRadius": 10,
-      "moveBack": false,
-      "doneMoving": false,
-      "ogX": 400,
       "ogY": 650
     },
     {
@@ -701,21 +641,6 @@ export const levelCustom = {
     },
     {
       "x": 900,
-      "y": 500,
-      "moveX": 900,
-      "moveY": 500,
-      "moveSpeed": 5,
-      "trollMomentX": null,
-      "trollMomentY": null,
-      "trolledYet": false,
-      "trollRadius": 10,
-      "moveBack": false,
-      "doneMoving": false,
-      "ogX": 900,
-      "ogY": 500
-    },
-    {
-      "x": 900,
       "y": 550,
       "moveX": 900,
       "moveY": 550,
@@ -908,21 +833,6 @@ export const levelCustom = {
       "doneMoving": false,
       "ogX": 1000,
       "ogY": 450
-    },
-    {
-      "x": 1000,
-      "y": 500,
-      "moveX": 1000,
-      "moveY": 500,
-      "moveSpeed": 5,
-      "trollMomentX": null,
-      "trollMomentY": null,
-      "trolledYet": false,
-      "trollRadius": 10,
-      "moveBack": false,
-      "doneMoving": false,
-      "ogX": 1000,
-      "ogY": 500
     },
     {
       "x": 1000,
@@ -1405,11 +1315,6 @@ export const levelCustom = {
       "material": "ice"
     },
     {
-      "x": 100,
-      "y": 550,
-      "material": "ice"
-    },
-    {
       "x": 150,
       "y": 550,
       "material": "ice"
@@ -1438,6 +1343,51 @@ export const levelCustom = {
       "x": 1250,
       "y": 300,
       "material": "ice"
+    },
+    {
+      "x": 450,
+      "y": 350,
+      "material": "block"
+    },
+    {
+      "x": 400,
+      "y": 400,
+      "material": "block"
+    },
+    {
+      "x": 350,
+      "y": 450,
+      "material": "block"
+    },
+    {
+      "x": 150,
+      "y": 500,
+      "material": "ice"
+    },
+    {
+      "x": 950,
+      "y": 450,
+      "material": "block"
+    },
+    {
+      "x": 950,
+      "y": 550,
+      "material": "block"
+    },
+    {
+      "x": 950,
+      "y": 100,
+      "material": "block"
+    },
+    {
+      "x": 1300,
+      "y": 100,
+      "material": "block"
+    },
+    {
+      "x": 1300,
+      "y": 300,
+      "material": "ice"
     }
   ],
   "spikes": [
@@ -1460,12 +1410,6 @@ export const levelCustom = {
       "orientation": 1
     },
     {
-      "x": 150,
-      "y": 500,
-      "size": 50,
-      "orientation": 1
-    },
-    {
       "x": 200,
       "y": 500,
       "size": 50,
@@ -1478,38 +1422,14 @@ export const levelCustom = {
       "orientation": 1
     },
     {
-      "x": 450,
-      "y": 350,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 400,
-      "y": 400,
-      "size": 50,
-      "orientation": 2
-    },
-    {
       "x": 300,
       "y": 200,
       "size": 50,
       "orientation": 4
     },
     {
-      "x": 400,
-      "y": 150,
-      "size": 50,
-      "orientation": 1
-    },
-    {
       "x": 350,
       "y": 150,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 400,
-      "y": 450,
       "size": 50,
       "orientation": 1
     },
@@ -1544,12 +1464,6 @@ export const levelCustom = {
       "orientation": 4
     },
     {
-      "x": 800,
-      "y": 350,
-      "size": 50,
-      "orientation": 3
-    },
-    {
       "x": 850,
       "y": 350,
       "size": 50,
@@ -1568,18 +1482,6 @@ export const levelCustom = {
       "orientation": 1
     },
     {
-      "x": 950,
-      "y": 500,
-      "size": 50,
-      "orientation": 2
-    },
-    {
-      "x": 950,
-      "y": 550,
-      "size": 50,
-      "orientation": 2
-    },
-    {
       "x": 1400,
       "y": 450,
       "size": 50,
@@ -1588,18 +1490,6 @@ export const levelCustom = {
     {
       "x": 1200,
       "y": 250,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 450,
-      "y": 650,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 500,
-      "y": 650,
       "size": 50,
       "orientation": 1
     },
@@ -1634,22 +1524,22 @@ export const levelCustom = {
       "orientation": 1
     },
     {
-      "x": 1300,
-      "y": 350,
-      "size": 50,
-      "orientation": 2
-    },
-    {
-      "x": 350,
-      "y": 450,
-      "size": 50,
-      "orientation": 1
-    },
-    {
       "x": 300,
       "y": 450,
       "size": 50,
       "orientation": 1
+    },
+    {
+      "x": 800,
+      "y": 329,
+      "size": 50,
+      "orientation": 3
+    },
+    {
+      "x": 1300,
+      "y": 350,
+      "size": 50,
+      "orientation": 2
     }
   ],
   "ziplines": [
@@ -1743,13 +1633,6 @@ export const levelCustom = {
     },
     {
       "x": 150,
-      "y": 600,
-      "w": 50,
-      "h": 50,
-      "variant": 2
-    },
-    {
-      "x": 150,
       "y": 650,
       "w": 50,
       "h": 50,
@@ -1875,97 +1758,6 @@ export const levelCustom = {
       "variant": 1
     },
     {
-      "x": 500,
-      "y": 350,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 500,
-      "y": 400,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 450,
-      "y": 350,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 500,
-      "y": 450,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 500,
-      "y": 500,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 450,
-      "y": 450,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 450,
-      "y": 500,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 450,
-      "y": 550,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 500,
-      "y": 550,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 500,
-      "y": 600,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 450,
-      "y": 600,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 450,
-      "y": 650,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 500,
-      "y": 650,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
       "x": 850,
       "y": 500,
       "w": 50,
@@ -2051,13 +1843,6 @@ export const levelCustom = {
     },
     {
       "x": 850,
-      "y": 350,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 800,
       "y": 350,
       "w": 50,
       "h": 50,
@@ -2163,27 +1948,6 @@ export const levelCustom = {
     },
     {
       "x": 950,
-      "y": 500,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 950,
-      "y": 550,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 950,
-      "y": 450,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 950,
       "y": 600,
       "w": 50,
       "h": 50,
@@ -2393,13 +2157,6 @@ export const levelCustom = {
       "variant": 1
     },
     {
-      "x": 1300,
-      "y": 300,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
       "x": 1250,
       "y": 100,
       "w": 50,
@@ -2458,13 +2215,6 @@ export const levelCustom = {
     {
       "x": 950,
       "y": 50,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 950,
-      "y": 100,
       "w": 50,
       "h": 50,
       "variant": 1
@@ -2680,20 +2430,6 @@ export const levelCustom = {
       "variant": 1
     },
     {
-      "x": 400,
-      "y": 400,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 400,
-      "y": 450,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
       "x": 1400,
       "y": 500,
       "w": 50,
@@ -2708,11 +2444,172 @@ export const levelCustom = {
       "variant": 1
     },
     {
-      "x": 1300,
-      "y": 100,
+      "x": 500,
+      "y": 400,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 500,
+      "y": 350,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 500,
+      "y": 450,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 450,
+      "y": 450,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 400,
+      "y": 450,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 450,
+      "y": 500,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 400,
+      "y": 500,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 500,
+      "y": 500,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 500,
+      "y": 550,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 450,
+      "y": 550,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 400,
+      "y": 550,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 400,
+      "y": 600,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 450,
+      "y": 600,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 500,
+      "y": 600,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 500,
+      "y": 650,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 450,
+      "y": 650,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 400,
+      "y": 650,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 100,
+      "y": 550,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 150,
+      "y": 600,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 400,
+      "y": 150,
       "w": 50,
       "h": 50,
       "variant": 1
+    },
+    {
+      "x": 800,
+      "y": 350,
+      "w": 50,
+      "h": 50,
+      "variant": 1
+    },
+    {
+      "x": 900,
+      "y": 500,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 950,
+      "y": 500,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 1000,
+      "y": 500,
+      "w": 50,
+      "h": 50,
+      "variant": 2
     }
   ]
 };

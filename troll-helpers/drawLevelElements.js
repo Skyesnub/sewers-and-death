@@ -34,7 +34,6 @@ export function drawLevelElements() {
 
   // --- Draw spikes ---
 
-  console.log(state.levelPhase)
   if (state.levelPhase === 'sewer') {
     for (const spike of state.spikes) {
       switch(spike.orientation) {
@@ -58,7 +57,6 @@ export function drawLevelElements() {
 
   // --- Draw blocks ---
   for (const block of state.blocks) {
- 
     if (block.material === 'block') { 
       if (state.levelPhase === 'sewer') {
        {ctx.drawImage(state.blockTexture, block.x, block.y, 50, 50);}
@@ -118,7 +116,7 @@ export function drawLevelElements() {
       state.playerHitbox.height
     );
     // --- Draw spike hitboxes ---
-    ctx.strokeStyle = 'orange';
+    ctx.strokeStyle = 'red';
     ctx.lineWidth = 2;
     state.spikes.forEach(spike => {
       ctx.strokeRect(

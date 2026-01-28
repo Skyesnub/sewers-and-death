@@ -190,21 +190,6 @@ export const levelCustom = {
       "ogY": 600
     },
     {
-      "x": 600,
-      "y": 650,
-      "moveX": 600,
-      "moveY": 650,
-      "moveSpeed": 5,
-      "trollMomentX": null,
-      "trollMomentY": null,
-      "trolledYet": false,
-      "trollRadius": 10,
-      "moveBack": false,
-      "doneMoving": false,
-      "ogX": 600,
-      "ogY": 650
-    },
-    {
       "x": 450,
       "y": 550,
       "moveX": 450,
@@ -277,21 +262,6 @@ export const levelCustom = {
       "moveBack": false,
       "doneMoving": false,
       "ogX": 700,
-      "ogY": 650
-    },
-    {
-      "x": 650,
-      "y": 650,
-      "moveX": 650,
-      "moveY": 650,
-      "moveSpeed": 5,
-      "trollMomentX": null,
-      "trollMomentY": null,
-      "trolledYet": false,
-      "trollRadius": 10,
-      "moveBack": false,
-      "doneMoving": false,
-      "ogX": 650,
       "ogY": 650
     },
     {
@@ -743,23 +713,26 @@ export const levelCustom = {
       "doneMoving": false,
       "ogX": 1050,
       "ogY": 250
+    },
+    {
+      "x": 650,
+      "y": 600,
+      "material": "block"
+    },
+    {
+      "x": 850,
+      "y": 600,
+      "material": "block"
+    },
+    {
+      "x": 850,
+      "y": 650,
+      "material": "block"
     }
   ],
   "spikes": [
     {
       "x": 400,
-      "y": 650,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 650,
-      "y": 600,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 850,
       "y": 650,
       "size": 50,
       "orientation": 1
@@ -879,14 +852,8 @@ export const levelCustom = {
       "orientation": 3
     },
     {
-      "x": 1100,
-      "y": 200,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 1150,
-      "y": 200,
+      "x": 1200,
+      "y": 150,
       "size": 50,
       "orientation": 1
     }
@@ -1547,6 +1514,48 @@ export const levelCustom = {
     {
       "x": 1200,
       "y": 350,
+      "w": 50,
+      "h": 50,
+      "variant": 1
+    },
+    {
+      "x": 650,
+      "y": 650,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 600,
+      "y": 650,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 850,
+      "y": 550,
+      "w": 50,
+      "h": 50,
+      "variant": 1
+    },
+    {
+      "x": 900,
+      "y": 600,
+      "w": 50,
+      "h": 50,
+      "variant": 1
+    },
+    {
+      "x": 950,
+      "y": 600,
+      "w": 50,
+      "h": 50,
+      "variant": 1
+    },
+    {
+      "x": 950,
+      "y": 650,
       "w": 50,
       "h": 50,
       "variant": 1

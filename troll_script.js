@@ -62,6 +62,11 @@ const lvl1Btn = document.getElementById("lvl1"), lvl2Btn = document.getElementBy
 const lvl5Btn = document.getElementById("lvl5"), lvl6Btn = document.getElementById("lvl6"), lvl7Btn = document.getElementById("lvl7"), lvl8Btn = document.getElementById("lvl8");
 const lvl9Btn = document.getElementById("lvl9"), lvl10Btn = document.getElementById("lvl10");
 
+const lvl11Btn = document.getElementById("lvl11"), lvl12Btn = document.getElementById("lvl12"), lvl13Btn = document.getElementById("lvl13"), 
+lvl14Btn = document.getElementById("lvl14"), lvl15Btn = document.getElementById("lvl15"), lvl16Btn = document.getElementById("lvl16"),
+lvl17Btn = document.getElementById("lvl17"), lvl18Btn = document.getElementById("lvl18"), lvl19Btn = document.getElementById("lvl19"), lvl20Btn = document.getElementById("lvl20")
+
+
 const restartBtn = document.getElementById("restartBtn"), changeLevelBtn = document.getElementById("switchLvl"), howToPlayBtn = document.getElementById("playInstructions"), 
 quitBtn = document.getElementById("quitBtn"), outStartMenu = document.getElementById("outOfStartMenu"), settingsBtn = document.getElementById("settingsBtnPause")
 
@@ -74,6 +79,8 @@ const checkBoxHitboxTrail = document.getElementById("hitboxTrailEnabledCheck")
 //button onclicks
 lvl1Btn.onclick = () => {mainLevel(1)}; lvl2Btn.onclick = () => {mainLevel(2)}; lvl3Btn.onclick = () => {mainLevel(3)}; lvl4Btn.onclick = () => {mainLevel(4)}; lvl5Btn.onclick = () => {mainLevel(5)};
 lvl6Btn.onclick = () => {mainLevel(6)}; lvl7Btn.onclick = () => {mainLevel(7)}; lvl8Btn.onclick = () => {mainLevel(8)}; lvl9Btn.onclick = () => {mainLevel(9)}; lvl10Btn.onclick = () => {mainLevel(10)};
+lvl11Btn.onclick = () => {mainLevel(11)}; lvl12Btn.onclick = () => {mainLevel(12)}; lvl13Btn.onclick = () => {mainLevel(13)}; lvl14Btn.onclick = () => {mainLevel(14)}; lvl15Btn.onclick = () => {mainLevel(15)};
+lvl16Btn.onclick = () => {mainLevel(16)}; lvl17Btn.onclick = () => {mainLevel(17)}; lvl18Btn.onclick = () => {mainLevel(18)}; lvl19Btn.onclick = () => {mainLevel(19)}; lvl20Btn.onclick = () => {mainLevel(20)};
 
 const howtoPlayMenu = document.getElementById("howToPlayMenu")
 const startMenu = document.getElementById("startMenu")

@@ -670,21 +670,6 @@ export const levelCustom = {
       "ogY": 650
     },
     {
-      "x": 350,
-      "y": 400,
-      "moveX": 350,
-      "moveY": 400,
-      "moveSpeed": 5,
-      "trollMomentX": null,
-      "trollMomentY": null,
-      "trolledYet": false,
-      "trollRadius": 10,
-      "moveBack": false,
-      "doneMoving": false,
-      "ogX": 350,
-      "ogY": 400
-    },
-    {
       "x": 300,
       "y": 400,
       "moveX": 300,
@@ -1343,6 +1328,21 @@ export const levelCustom = {
       "doneMoving": false,
       "ogX": 950,
       "ogY": 100
+    },
+    {
+      "x": 350,
+      "y": 300,
+      "material": "block"
+    },
+    {
+      "x": 300,
+      "y": 300,
+      "material": "block"
+    },
+    {
+      "x": 300,
+      "y": 350,
+      "material": "block"
     }
   ],
   "spikes": [
@@ -1354,18 +1354,6 @@ export const levelCustom = {
     },
     {
       "x": 250,
-      "y": 350,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 300,
-      "y": 350,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 350,
       "y": 350,
       "size": 50,
       "orientation": 1
@@ -1467,12 +1455,6 @@ export const levelCustom = {
       "orientation": 4
     },
     {
-      "x": 750,
-      "y": 500,
-      "size": 50,
-      "orientation": 1
-    },
-    {
       "x": 600,
       "y": 450,
       "size": 50,
@@ -1525,6 +1507,12 @@ export const levelCustom = {
       "y": 650,
       "size": 50,
       "orientation": 1
+    },
+    {
+      "x": 300,
+      "y": 250,
+      "size": 50,
+      "orientation": 1
     }
   ],
   "ziplines": [
@@ -1547,16 +1535,16 @@ export const levelCustom = {
     {
       "pt1X": 1000,
       "pt1Y": 600,
-      "pt2X": 1350,
-      "pt2Y": 525,
+      "pt2X": 1370,
+      "pt2Y": 500,
       "justJumpedOff": false,
       "jumpOffTimer": 0
     },
     {
       "pt1X": 1277,
       "pt1Y": 441,
-      "pt2X": 1026,
-      "pt2Y": 329,
+      "pt2X": 1022,
+      "pt2Y": 309,
       "justJumpedOff": false,
       "jumpOffTimer": 0
     },
@@ -1955,12 +1943,6 @@ export const levelCustom = {
       "h": 50
     },
     {
-      "x": 1000,
-      "y": 300,
-      "w": 50,
-      "h": 50
-    },
-    {
       "x": 1050,
       "y": 250,
       "w": 50,
@@ -2291,6 +2273,27 @@ export const levelCustom = {
       "w": 50,
       "h": 50,
       "variant": 2
+    },
+    {
+      "x": 350,
+      "y": 350,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 350,
+      "y": 400,
+      "w": 50,
+      "h": 50,
+      "variant": 2
+    },
+    {
+      "x": 1000,
+      "y": 300,
+      "w": 50,
+      "h": 50,
+      "variant": 1
     }
   ]
 };

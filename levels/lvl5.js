@@ -1263,15 +1263,14 @@ export const levelCustom = {
       "x": 0,
       "y": 650,
       "material": "ice"
+    },
+    {
+      "x": 450,
+      "y": 200,
+      "material": "block"
     }
   ],
   "spikes": [
-    {
-      "x": 250,
-      "y": 500,
-      "size": 50,
-      "orientation": 1
-    },
     {
       "x": 350,
       "y": 550,
@@ -1285,12 +1284,6 @@ export const levelCustom = {
       "orientation": 1
     },
     {
-      "x": 150,
-      "y": 300,
-      "size": 50,
-      "orientation": 1
-    },
-    {
       "x": 200,
       "y": 200,
       "size": 50,
@@ -1299,12 +1292,6 @@ export const levelCustom = {
     {
       "x": 0,
       "y": 200,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 200,
-      "y": 100,
       "size": 50,
       "orientation": 1
     },
@@ -1394,7 +1381,7 @@ export const levelCustom = {
     },
     {
       "x": 600,
-      "y": 331,
+      "y": 323,
       "size": 50,
       "orientation": 3
     },
@@ -1412,7 +1399,7 @@ export const levelCustom = {
     },
     {
       "x": 950,
-      "y": 550,
+      "y": 535,
       "size": 50,
       "orientation": 3
     },
@@ -2476,6 +2463,41 @@ export const levelCustom = {
     },
     {
       "x": 1200,
+      "y": 450,
+      "w": 50,
+      "h": 50,
+      "variant": 1
+    },
+    {
+      "x": 450,
+      "y": 250,
+      "w": 50,
+      "h": 50,
+      "variant": 1
+    },
+    {
+      "x": 450,
+      "y": 300,
+      "w": 50,
+      "h": 50,
+      "variant": 1
+    },
+    {
+      "x": 450,
+      "y": 350,
+      "w": 50,
+      "h": 50,
+      "variant": 1
+    },
+    {
+      "x": 450,
+      "y": 400,
+      "w": 50,
+      "h": 50,
+      "variant": 1
+    },
+    {
+      "x": 450,
       "y": 450,
       "w": 50,
       "h": 50,

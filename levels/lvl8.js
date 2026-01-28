@@ -968,15 +968,24 @@ export const levelCustom = {
       "doneMoving": false,
       "ogX": 1050,
       "ogY": 650
+    },
+    {
+      "x": 300,
+      "y": 100,
+      "material": "block"
+    },
+    {
+      "x": 350,
+      "y": 150,
+      "material": "block"
+    },
+    {
+      "x": 300,
+      "y": 150,
+      "material": "block"
     }
   ],
   "spikes": [
-    {
-      "x": 150,
-      "y": 675,
-      "size": 50,
-      "orientation": 1
-    },
     {
       "x": 200,
       "y": 650,
@@ -990,20 +999,8 @@ export const levelCustom = {
       "orientation": 1
     },
     {
-      "x": 300,
-      "y": 675,
-      "size": 50,
-      "orientation": 1
-    },
-    {
       "x": 450,
       "y": 600,
-      "size": 50,
-      "orientation": 1
-    },
-    {
-      "x": 550,
-      "y": 550,
       "size": 50,
       "orientation": 1
     },
@@ -1039,25 +1036,25 @@ export const levelCustom = {
     },
     {
       "x": 650,
-      "y": 350,
+      "y": 368,
       "size": 50,
       "orientation": 1
     },
     {
       "x": 650,
-      "y": 250,
+      "y": 233,
       "size": 50,
       "orientation": 3
     },
     {
       "x": 450,
-      "y": 300,
+      "y": 317,
       "size": 50,
       "orientation": 1
     },
     {
-      "x": 250,
-      "y": 250,
+      "x": 249,
+      "y": 267,
       "size": 50,
       "orientation": 1
     },
@@ -1068,25 +1065,7 @@ export const levelCustom = {
       "orientation": 3
     },
     {
-      "x": 250,
-      "y": 0,
-      "size": 50,
-      "orientation": 3
-    },
-    {
-      "x": 200,
-      "y": 0,
-      "size": 50,
-      "orientation": 3
-    },
-    {
       "x": 450,
-      "y": 0,
-      "size": 50,
-      "orientation": 3
-    },
-    {
-      "x": 650,
       "y": 0,
       "size": 50,
       "orientation": 3
@@ -1219,12 +1198,6 @@ export const levelCustom = {
     },
     {
       "x": 1250,
-      "y": 300,
-      "size": 50,
-      "orientation": 3
-    },
-    {
-      "x": 1250,
       "y": 500,
       "size": 50,
       "orientation": 3
@@ -1270,6 +1243,36 @@ export const levelCustom = {
       "y": 500,
       "size": 50,
       "orientation": 1
+    },
+    {
+      "x": 150,
+      "y": 650,
+      "size": 50,
+      "orientation": 1
+    },
+    {
+      "x": 300,
+      "y": 65,
+      "size": 50,
+      "orientation": 1
+    },
+    {
+      "x": 1300,
+      "y": 300,
+      "size": 50,
+      "orientation": 3
+    },
+    {
+      "x": 1350,
+      "y": 300,
+      "size": 50,
+      "orientation": 3
+    },
+    {
+      "x": 1400,
+      "y": 300,
+      "size": 50,
+      "orientation": 3
     }
   ],
   "ziplines": [
@@ -1614,13 +1617,6 @@ export const levelCustom = {
       "variant": 1
     },
     {
-      "x": 300,
-      "y": 650,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
       "x": 200,
       "y": 650,
       "w": 50,
@@ -1636,13 +1632,6 @@ export const levelCustom = {
     },
     {
       "x": 150,
-      "y": 600,
-      "w": 50,
-      "h": 50,
-      "variant": 1
-    },
-    {
-      "x": 300,
       "y": 600,
       "w": 50,
       "h": 50,

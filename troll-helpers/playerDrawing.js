@@ -19,6 +19,7 @@ export function chooseImgToDraw() {
 
   let img;
   if (!state.dead) {
+    state.playerIMGSize = 60;
     if (state.inputRight && !state.inputLeft) img = state.Img1_2Alive === 1 ? state.PRightImg1 : state.PRightImg2;
     else if (state.inputLeft && !state.inputRight) img = state.Img1_2Alive === 1 ? state.PLeftImg1 : state.PLeftImg2;
     else img = state.PstandStill;
@@ -27,7 +28,8 @@ export function chooseImgToDraw() {
     if (state.player_switchIMG_timerDead < 0) {
       if (state.Img1_2_3Dead === 1) state.Img1_2_3Dead = 2;
       else if (state.Img1_2_3Dead === 2) state.Img1_2_3Dead = 3;
-      else if (state.Img1_2_3Dead === 3) resetAfterDeath();
+      else if (state.Img1_2_3Dead === 3) state.Img1_2_3Dead = 4;
+      else if (state.Img1_2_3Dead === 4) resetAfterDeath();
       state.player_switchIMG_timerDead = state.player_switchIMG_constDead;
     }
 
@@ -38,9 +40,14 @@ export function chooseImgToDraw() {
 
     img = state.deadDirection === 1
           ? (state.Img1_2_3Dead === 1 ? state.PDeathR1 :
-             state.Img1_2_3Dead === 2 ? state.PDeathR2 : state.PDeathR3)
+             state.Img1_2_3Dead === 2 ? state.PDeathR2 : 
+             state.Img1_2_3Dead === 3 ? state.PDeathR3 : state.PDeathR4)
           : (state.Img1_2_3Dead === 1 ? state.PDeathL1 :
-             state.Img1_2_3Dead === 2 ? state.PDeathL2 : state.PDeathL3);
+             state.Img1_2_3Dead === 2 ? state.PDeathL2 : 
+             state.Img1_2_3Dead === 3 ? state.PDeathL3: state.PDeathL4);
+
+
+
   }
 
   ctx.drawImage(img, state.playerX - drawOffsetX, state.playerY - drawOffsetY, state.playerIMGSize, state.playerIMGSize);
@@ -63,6 +70,7 @@ function resetAfterDeath() {
   state.speedrunTimer = 0;
   state.speedrunStarted = false;
   state.momentum = 0;
+  state.playerIMGSize = 60;
 
   state.ziplines.forEach(zip => {
     zip.justJumpedOff = false;

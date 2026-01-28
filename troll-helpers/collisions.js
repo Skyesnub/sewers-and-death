@@ -230,7 +230,8 @@ export function updateClouds() {
     }
 
     // --- Move player along with the cloud ---
-    const deltaY = clouds[0].y - prevY;
+    let deltaY = clouds[0].y - prevY;
+    if (deltaY > 0) {deltaY -= .5}
     if (playerOnTopNow && deltaY !== 0) {
       state.playerY += deltaY;
       console.log("moved player by deltaY", deltaY)

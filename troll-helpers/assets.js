@@ -41,6 +41,9 @@ PDeathL2.src = "./trollgame_images/player_death/falling_left2new.png";
 export const PDeathL3 = new Image();
 PDeathL3.src = "./trollgame_images/player_death/falling_left3new.png";
 
+export const PDeathL4 = new Image();
+PDeathL4.src = "./trollgame_images/player_death/falling_left4new.png";
+
 export const PDeathR1 = new Image();
 PDeathR1.src = "./trollgame_images/player_death/falling_right1new.png";
 
@@ -49,6 +52,9 @@ PDeathR2.src = "./trollgame_images/player_death/falling_right2new.png";
 
 export const PDeathR3 = new Image();
 PDeathR3.src = "./trollgame_images/player_death/falling_right3new.png";
+
+export const PDeathR4 = new Image();
+PDeathR4.src = "./trollgame_images/player_death/falling_right4new.png"
 
 // ================= LEVEL ELEMENTS =================
 
