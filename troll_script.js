@@ -31,7 +31,12 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowUp' && state.adminMode) {state.goingUpAdmin = true; state.speedrunStarted = true;}
   if (e.key === 'ArrowDown' && state.adminMode) {state.goingDownAdmin = true; state.speedrunStarted = true;}
   if (e.key === 'r') { state.restart.currentTime = 0; state.restart.play(); death(0); }
-  if (e.key === 'a') toggleAdminMode();
+  if (e.key === 'q') toggleAdminMode();
+  if (e.key === 'w' && !state.dead && !state.levelTransitioning) handleJump();
+  if (e.key === 'a' && !state.levelTransitioning) {if (!state.inputLeft) {state.curAnimSpeed = state.initAnimSpeed}; state.inputLeft = true; state.speedrunStarted = true;}
+  if (e.key === 'd' && !state.levelTransitioning) {if (!state.inputRight) {state.curAnimSpeed = state.initAnimSpeed}; state.inputRight = true; state.speedrunStarted = true;}
+  if (e.key === 'w' && state.adminMode) {state.goingUpAdmin = true; state.speedrunStarted = true;}
+  if (e.key === 's' && state.adminMode) {state.goingDownAdmin = true; state.speedrunStarted = true;}
 });
 
 
@@ -40,6 +45,10 @@ document.addEventListener('keyup', e => {
   if (e.key === 'ArrowRight') state.inputRight = false; 
   if (e.key === 'ArrowUp') state.goingUpAdmin = false;
   if (e.key === 'ArrowDown') state.goingDownAdmin = false;
+  if (e.key === 'a') state.inputLeft = false; 
+  if (e.key === 'd') state.inputRight = false; 
+  if (e.key === 'w') state.goingUpAdmin = false;
+  if (e.key === 's') state.goingDownAdmin = false;
 });
 
 async function advanceLevel(levelName) {
