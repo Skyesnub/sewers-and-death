@@ -188,7 +188,7 @@ function animate() {
   // Timers for jump cooldown and zipline jump off cooldown
   updateTimers()
 
-  if (!state.dead) {
+  if (!state.dead && !state.levelTransitioning) {
     updateClouds();
   }
 
