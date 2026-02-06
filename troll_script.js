@@ -19,6 +19,7 @@ import { checkSpikeCollision, death } from './troll-helpers/spike-death.js';
 import { moveAndDrawKey } from './troll-helpers/key-helper.js';
 import { iceDetection } from './troll-helpers/spike-death.js';
 import { updateClouds } from './troll-helpers/collisions.js';
+import { handleHeavenAnim } from './troll-helpers/heavenAnimHandler.js';
 //default level is level 1
 advanceLevel("lvl1")
 pauseGame();
@@ -54,8 +55,22 @@ document.addEventListener('keyup', e => {
 async function advanceLevel(levelName) {
   if (!levelName) { levelName = prompt("Enter level ID:", "levelCustom"); }
   if (levelName) {
-    state.minilevelStr = levelName;
-    await loadLevel();
+    if (levelName === "lvl11") {
+      //animation
+      state.heavenAnimFinished = false;
+      state.heavenAnimStarted = true;
+      state.heavenAnimTimer = 0;
+      state.playerRotation = 0;
+      state.heavenAnimPlayerX = 650;
+      state.heavenAnimPlayerY = 700;
+      state.leScream.currentTime = 0;
+      state.leScream.play();
+    }
+    else {
+      state.minilevelStr = levelName;
+      await loadLevel();
+    }
+
   }
 }
 
@@ -201,6 +216,9 @@ function animate() {
     updateClouds();
   }
 
+  if (!state.heavenAnimFinished && state.heavenAnimStarted) {
+    handleHeavenAnim()
+  }
 
 
   // Physics update

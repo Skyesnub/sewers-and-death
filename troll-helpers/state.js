@@ -17,7 +17,8 @@ import {
   cloud3Texture,
   heavenBlockTexture,
   heavenDecoBlockTexture,
-  heavenDecoBlockTexture2
+  heavenDecoBlockTexture2,
+  
 } from './assets.js';
 
 export const state = {
@@ -143,6 +144,15 @@ export const state = {
   coyoteTime: 5,
   zipLineJumpConst: 15,
   spikeLeniency: 15,
+
+  //heaven animation
+  heavenAnimStarted: false,
+  heavenAnimFinished: false,
+  heavenAnimTimer: 0,
+  heavenAnimPlayerX: 600,
+  heavenAnimPlayerY: 800,
+  playerRotation: 0,
+
 
   //key
   keyMovingUp: true,

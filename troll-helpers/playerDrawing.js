@@ -8,7 +8,9 @@ export function chooseImgToDraw() {
   const drawOffsetY = 0;
 
   // Glow
-  ctx.drawImage(state.player_glow, state.playerX - drawOffsetX - 3, state.playerY - drawOffsetY, state.playerIMGSize, state.playerIMGSize);
+  if (!state.heavenAnimStarted) {
+    ctx.drawImage(state.player_glow, state.playerX - drawOffsetX - 3, state.playerY - drawOffsetY, state.playerIMGSize, state.playerIMGSize);
+  }
   
   // Alive animation
   state.player_switchIMG_timerAlive -= 1;
@@ -49,8 +51,9 @@ export function chooseImgToDraw() {
 
 
   }
-
-  ctx.drawImage(img, state.playerX - drawOffsetX, state.playerY - drawOffsetY, state.playerIMGSize, state.playerIMGSize);
+  if (!state.heavenAnimStarted) {
+    ctx.drawImage(img, state.playerX - drawOffsetX, state.playerY - drawOffsetY, state.playerIMGSize, state.playerIMGSize);
+  }
 }
 
 function resetAfterDeath() {
