@@ -8,7 +8,7 @@ export function chooseImgToDraw() {
   const drawOffsetY = 0;
 
   // Glow
-  if (!state.heavenAnimStarted) {
+  if (!state.heavenAnimStarted || state.heavenAnimTimer < 15) {
     ctx.drawImage(state.player_glow, state.playerX - drawOffsetX - 3, state.playerY - drawOffsetY, state.playerIMGSize, state.playerIMGSize);
   }
   
@@ -51,7 +51,7 @@ export function chooseImgToDraw() {
 
 
   }
-  if (!state.heavenAnimStarted) {
+  if (!state.heavenAnimStarted || state.heavenAnimTimer < 15) {
     ctx.drawImage(img, state.playerX - drawOffsetX, state.playerY - drawOffsetY, state.playerIMGSize, state.playerIMGSize);
   }
 }

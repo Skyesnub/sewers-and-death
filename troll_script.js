@@ -150,8 +150,11 @@ function handleJump() {
     state.velo = -state.jumpVelo;
     state.justJumped = true;
     state.justJumpedTimer = state.justJumpedConst;
-    state.jumpSound.currentTime = 0;
-    state.jumpSound.play();
+    if (!state.adminMode) {
+      state.jumpSound.currentTime = 0;
+      state.jumpSound.play();
+    }
+
   }
 }
 

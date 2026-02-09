@@ -42,7 +42,10 @@ export function applyPhysics() {
 
     // Floor
     if (state.playerY + state.playerSize >= canvas.height) {
-      state.playerY = canvas.height - state.playerSize;
+      //so during heaven anim player can fall through floor
+      if (!state.heavenAnimStarted) {
+        state.playerY = canvas.height - state.playerSize;
+      }
       state.velo = 0;
       state.isonGround = true;
     }

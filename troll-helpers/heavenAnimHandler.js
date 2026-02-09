@@ -16,7 +16,7 @@ export async function handleHeavenAnim() {
     return;
   }
 
-  const size = state.playerIMGSize * 2;
+  const size = state.playerIMGSize * 1.5;
   const cx = state.heavenAnimPlayerX + size / 2;
   const cy = state.heavenAnimPlayerY + size / 2;
 
@@ -35,8 +35,12 @@ export async function handleHeavenAnim() {
   ctx.restore();
 
   // update motion
-  state.playerRotation += 0.2; // radians per frame
-  state.heavenAnimPlayerY -= 25;
+  if (state.heavenAnimTimer > 15) {
+    state.playerRotation += 0.2; // radians per frame
+    state.heavenAnimPlayerY -= 15;
+  }
+  //actual player falls through floor
+  state.playerY += 5
 }
 
 
