@@ -911,7 +911,7 @@ export const levelCustom = {
     },
     {
       "pt1X": 600,
-      "pt1Y": 550,
+      "pt1Y": 525,
       "pt2X": 600,
       "pt2Y": 400,
       "justJumpedOff": false,
