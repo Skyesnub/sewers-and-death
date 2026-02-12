@@ -93,8 +93,8 @@ export function drawLevelElements() {
     if (state.levelPhase === 'sewer') {ctx.strokeStyle = '#8f8e8eff'}
     if (state.levelPhase === 'heaven') {ctx.strokeStyle = '#273c81ff'}
 
-    const midpointX = Math.abs((zipline.pt1X + zipline.pt2X)/2) + 7
-    const midpointY = Math.abs((zipline.pt1Y + zipline.pt2Y)/2) + 7
+    const midpointX = Math.abs((zipline.pt1X + zipline.pt2X)/2)
+    const midpointY = Math.abs((zipline.pt1Y + zipline.pt2Y)/2)
                   
     const dx = zipline.pt2X - zipline.pt1X
     const dy = zipline.pt2Y - zipline.pt1Y
