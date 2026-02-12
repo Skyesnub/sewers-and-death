@@ -175,13 +175,6 @@ export function updateClouds() {
     for (const c of clouds) {
       let horizontalOverlap = hb.right > c.x + 10 && hb.left < c.x + 40;
       if (c.variant == 1 || c.variant == 2) {horizontalOverlap = hb.right > c.x + 10 && hb.left < c.x + 50;}
-
-      
-      //ctx.fillStyle = 'blue';
-      //if (c.variant == 1 || c.variant == 2) {ctx.fillRect(c.x + 10, 100, 50, 200)}
-      //else {ctx.fillRect(c.x + 10, 100, 30, 200)}
-      // This stuff that is commented out was for hitbox purposes
-    
      
       const standingOn =
         hb.bottom >= c.y + 0 &&
@@ -234,8 +227,29 @@ export function updateClouds() {
 
     // --- Move player along with the cloud ---
     let deltaY = clouds[0].y - prevY;
-    if (deltaY > 0) {deltaY -= 0.5}
-    if (playerOnTopNow && deltaY !== 0) {
+    if (deltaY > 0) deltaY -= 0.5
+
+    if (playerOnTopNow && deltaY != 0) {
+
+      const hb = {
+        left: state.playerX + state.playerHitbox.offsetX,
+        right: state.playerX + state.playerHitbox.offsetX + state.playerHitbox.width,
+        top: state.playerY + state.playerHitbox.offsetY,
+        bottom: state.playerY + state.playerHitbox.offsetY + state.playerHitbox.height
+      };
+
+      for (const block of state.blocks) {
+        if (block.material != 'cloud') {
+          let bottomOfPlayer = state.playerY + state.playerHitbox.offsetY + state.playerSize
+          let horizontalOverlap = hb.right > block.x && hb.left < block.x + 50;
+
+          if (horizontalOverlap && bottomOfPlayer > block.y && deltaY > 0) {
+            deltaY = 0;
+          }
+        }
+
+      }
+
       state.playerY += deltaY;
       console.log("moved player by deltaY", deltaY)
     }
