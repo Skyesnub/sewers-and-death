@@ -89,6 +89,43 @@ export function drawLevelElements() {
     ctx.moveTo(zipline.pt1X, zipline.pt1Y);
     ctx.lineTo(zipline.pt2X, zipline.pt2Y);
     ctx.stroke();
+
+    if (state.levelPhase === 'sewer') {ctx.strokeStyle = '#8f8e8eff'}
+    if (state.levelPhase === 'heaven') {ctx.strokeStyle = '#273c81ff'}
+
+    const midpointX = Math.abs((zipline.pt1X + zipline.pt2X)/2) + 7
+    const midpointY = Math.abs((zipline.pt1Y + zipline.pt2Y)/2) + 7
+                  
+    const dx = zipline.pt2X - zipline.pt1X
+    const dy = zipline.pt2Y - zipline.pt1Y
+
+    let thetaRadians = Math.atan(dy/dx)
+
+    let thetaSide1 = thetaRadians + Math.PI/2 + 1
+    let thetaSide2 = thetaRadians - Math.PI/2 - 1
+    if (zipline.pt1X > zipline.pt2X) {
+      thetaSide1 = Math.PI + thetaSide1
+      thetaSide2 = Math.PI + thetaSide2
+    }
+
+    const length = 15
+
+    const dx1 = length * Math.cos(thetaSide1)
+    const dy1 = length * Math.sin(thetaSide1)
+    const dx2 = length * Math.cos(thetaSide2)
+    const dy2 = length * Math.sin(thetaSide2)
+
+    
+    ctx.beginPath();
+    ctx.moveTo(midpointX, midpointY)
+    ctx.lineTo(midpointX + dx1, midpointY + dy1)
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(midpointX, midpointY)
+    ctx.lineTo(midpointX + dx2, midpointY + dy2)
+    ctx.stroke();
+    
   }
   if (state.hitboxTrailOn) {
     state.hitboxTrail.push({
