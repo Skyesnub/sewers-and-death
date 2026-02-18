@@ -21,12 +21,11 @@ import { iceDetection } from './troll-helpers/spike-death.js';
 import { updateClouds } from './troll-helpers/collisions.js';
 import { handleHeavenAnim } from './troll-helpers/heavenAnimHandler.js';
 import { handleStartAnim } from './troll-helpers/startAnimHandler.js';
-//default level is level 1
-advanceLevel("lvl1")
-pauseGame();
 
 // --- Input Handlers ---
 document.addEventListener('keydown', e => {
+  if (e.key === 'k' && state.startAnimStarted && !state.startAnimFinished) {state.startAnimTimer = 1554; state.introMusic.currentTime = 0; state.introMusic.pause()}
+
   if (e.key === 'ArrowUp' && !state.dead && !state.levelTransitioning) handleJump();
   if (e.key === 'ArrowLeft' && !state.levelTransitioning) {if (!state.inputLeft) {state.curAnimSpeed = state.initAnimSpeed}; state.inputLeft = true; state.speedrunStarted = true;}
   if (e.key === 'ArrowRight' && !state.levelTransitioning) {if (!state.inputRight) {state.curAnimSpeed = state.initAnimSpeed}; state.inputRight = true; state.speedrunStarted = true;}
@@ -81,6 +80,27 @@ async function mainLevel(number) {
   resumeGame();
 }
 
+async function bootToIntro() {
+    await advanceLevel("lvl1");
+
+    state.startAnimStarted = true;
+    state.startAnimFinished = false;
+
+    state.startFallTriggered = false;
+    state.startFallVelX = 0;
+    state.startFallVelY = 0;
+    state.startFallRotation = 0;
+    state.startFallAngularVel = 0;
+
+    state.startAnimTimer = 0;
+
+    state.introMusic.currentTime = 0;
+    state.introMusic.play();
+
+    resumeGame();
+}
+
+
 
 //button definitions
 const lvl1Btn = document.getElementById("lvl1"), lvl2Btn = document.getElementById("lvl2"), lvl3Btn = document.getElementById("lvl3"), lvl4Btn = document.getElementById("lvl4");
@@ -125,13 +145,11 @@ quitBtn.onclick = () => {
   advanceLevel("lvl1")
   pauseGame()
 }
-outStartMenu.onclick = () => {
+outStartMenu.onclick = async () => {
   startMenuDisplayed = !startMenuDisplayed
   startMenu.classList.toggle("hidden", !startMenuDisplayed);
 
-  state.introMusic.currentTime = 0;
-  state.introMusic.play();
-  resumeGame()
+  await bootToIntro()
 }
 settingsBtn.onclick = () => {
   console.log("yes the settings button will do something eventually")
@@ -201,20 +219,6 @@ function handleSettings() {
 // --- Main Animation Loop ---
 function animate() {
   requestAnimationFrame(animate);
-
-  if (!state.startAnimStarted && !state.startAnimFinished) {
-      state.startAnimStarted = true;
-    
-      state.startFallTriggered = false;
-
-      state.startFallVelX = 0;
-      state.startFallVelY = 0;
-
-      state.startFallRotation = 0;
-      state.startFallAngularVel = 0;
-
-
-  }
 
   if (state.startAnimStarted) {handleStartAnim()}
 

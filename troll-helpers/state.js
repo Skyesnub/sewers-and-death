@@ -182,6 +182,10 @@ export const state = {
   startFallRotation: 0,
   startFallAngularVel: 0,
 
+  cameraZoom1X: 0,
+  cameraZoom1Y: 0,
+  cameraZoom1: 0,
+
 
   //key
   keyMovingUp: true,
