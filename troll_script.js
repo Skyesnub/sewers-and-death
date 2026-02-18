@@ -20,6 +20,7 @@ import { moveAndDrawKey } from './troll-helpers/key-helper.js';
 import { iceDetection } from './troll-helpers/spike-death.js';
 import { updateClouds } from './troll-helpers/collisions.js';
 import { handleHeavenAnim } from './troll-helpers/heavenAnimHandler.js';
+import { handleStartAnim } from './troll-helpers/startAnimHandler.js';
 //default level is level 1
 advanceLevel("lvl1")
 pauseGame();
@@ -127,6 +128,9 @@ quitBtn.onclick = () => {
 outStartMenu.onclick = () => {
   startMenuDisplayed = !startMenuDisplayed
   startMenu.classList.toggle("hidden", !startMenuDisplayed);
+
+  state.introMusic.currentTime = 0;
+  state.introMusic.play();
   resumeGame()
 }
 settingsBtn.onclick = () => {
@@ -198,12 +202,29 @@ function handleSettings() {
 function animate() {
   requestAnimationFrame(animate);
 
+  if (!state.startAnimStarted && !state.startAnimFinished) {
+      state.startAnimStarted = true;
+    
+      state.startFallTriggered = false;
+
+      state.startFallVelX = 0;
+      state.startFallVelY = 0;
+
+      state.startFallRotation = 0;
+      state.startFallAngularVel = 0;
+
+
+  }
+
+  if (state.startAnimStarted) {handleStartAnim()}
+
   //Change volume based on slider and all assets based on it
   handleSettings()
 
-  if (isPaused()) return;
+  if (isPaused() || state.startAnimStarted) return;
 
   drawLevelElements()
+
 
   // Admin Mode movement
   if (state.adminMode) {
@@ -274,6 +295,8 @@ function animate() {
 
   // Draw player
   chooseImgToDraw();
+
+
 }
 
 animate();

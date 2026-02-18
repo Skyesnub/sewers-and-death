@@ -9,6 +9,7 @@ export const restart = new Audio('./trollgame_sounds/restart_soundP2.m4a');
 export const adminModeSound = new Audio('./trollgame_sounds/admin-mode.mp3');
 export const finishLevelSound = new Audio('./trollgame_sounds/finish-level-cut3louder.wav')
 export const jumpSound = new Audio('./trollgame_sounds/jump-sound-quieter.mp3')
+export const introMusic = new Audio('./trollgame_sounds/intro-music-louder.mp3')
 
 // ================= PLAYER IMAGES =================
 
@@ -118,3 +119,17 @@ cloud2Texture.src = "./trollgame_images/cloud-middle.png"
 
 export const cloud3Texture = new Image();
 cloud3Texture.src = "./trollgame_images/cloud-right.png"
+
+// ==================== START ANIM =====================
+
+export const startAnimBG = new Image();
+startAnimBG.src = "./trollgame_bg_images/intro-bg.png"
+
+export const godOnThrone = new Image();
+godOnThrone.src = "./trollgame_images/god-on-throne.png"
+
+export const lightningImage = new Image();
+lightningImage.src = "./trollgame_images/lightning.png"
+
+export const startPlatform = new Image();
+startPlatform.src = "./trollgame_images/platform.png"

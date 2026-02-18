@@ -18,6 +18,11 @@ import {
   heavenBlockTexture,
   heavenDecoBlockTexture,
   heavenDecoBlockTexture2,
+  introMusic,
+  startAnimBG,
+  godOnThrone,
+  lightningImage,
+  startPlatform,
   
 } from './assets.js';
 
@@ -126,6 +131,12 @@ export const state = {
   adminModeSound,
   finishLevelSound,
   jumpSound,
+  introMusic,
+
+  startAnimBG,
+  godOnThrone,
+  lightningImage,
+  startPlatform,
 
   glowingKey,
 
@@ -147,6 +158,7 @@ export const state = {
   zipLineJumpConst: 15,
   spikeLeniency: 15,
 
+
   //heaven animation
   heavenAnimStarted: false,
   heavenAnimFinished: false,
@@ -154,6 +166,21 @@ export const state = {
   heavenAnimPlayerX: 600,
   heavenAnimPlayerY: 800,
   playerRotation: 0,
+
+  //start animation
+  startAnimStarted: false,
+  startAnimFinished: false,
+  startAnimTimer: 0,
+  startAnimPlayerX: 750,
+  startAnimPlayerY: 220,
+
+  startFallTriggered: false,
+
+  startFallVelX: 0,
+  startFallVelY: 0,
+
+  startFallRotation: 0,
+  startFallAngularVel: 0,
 
 
   //key
