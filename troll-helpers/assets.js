@@ -10,6 +10,7 @@ export const adminModeSound = new Audio('./trollgame_sounds/admin-mode.mp3');
 export const finishLevelSound = new Audio('./trollgame_sounds/finish-level-cut3louder.wav')
 export const jumpSound = new Audio('./trollgame_sounds/jump-sound-quieter.mp3')
 export const introMusic = new Audio('./trollgame_sounds/intro-music-louder.mp3')
+export const bossMusic = new Audio('./trollgame_sounds/boss-music-louder.mp3')
 
 // ================= PLAYER IMAGES =================
 

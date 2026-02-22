@@ -23,6 +23,7 @@ import {
   godOnThrone,
   lightningImage,
   startPlatform,
+  bossMusic,
   
 } from './assets.js';
 
@@ -132,6 +133,7 @@ export const state = {
   finishLevelSound,
   jumpSound,
   introMusic,
+  bossMusic,
 
   startAnimBG,
   godOnThrone,
@@ -185,6 +187,14 @@ export const state = {
   cameraZoom1X: 0,
   cameraZoom1Y: 0,
   cameraZoom1: 0,
+
+  fadeBackInOpacity: 0,
+
+  //boss animation
+
+  bossAnimStarted:false,
+  bossAnimFinished: false,
+  bossAnimTimer: 0,
 
 
   //key

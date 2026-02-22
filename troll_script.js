@@ -21,6 +21,7 @@ import { iceDetection } from './troll-helpers/spike-death.js';
 import { updateClouds } from './troll-helpers/collisions.js';
 import { handleHeavenAnim } from './troll-helpers/heavenAnimHandler.js';
 import { handleStartAnim } from './troll-helpers/startAnimHandler.js';
+import { handleBossAnim } from './troll-helpers/bossAnimHandler.js';
 
 // --- Input Handlers ---
 document.addEventListener('keydown', e => {
@@ -52,27 +53,55 @@ document.addEventListener('keyup', e => {
   if (e.key === 's') state.goingDownAdmin = false;
 });
 
-async function advanceLevel(levelName) {
-  if (!levelName) { levelName = prompt("Enter level ID:", "levelCustom"); }
-  if (levelName) {
-    if (levelName === "lvl11") {
-      //animation
-      state.heavenAnimFinished = false;
-      state.heavenAnimStarted = true;
-      state.heavenAnimTimer = 0;
-      state.playerRotation = 0;
-      state.heavenAnimPlayerX = 650;
-      state.heavenAnimPlayerY = 700;
-      state.leScream.currentTime = 0;
-      state.leScream.play();
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        if (state.startAnimStarted && !state.startAnimFinished) {
+          state.introMusic.pause();
+        }
+        if (state.bossAnimStarted) {
+          state.bossMusic.pause();
+        }
+    } else {
+        if (state.startAnimStarted && !state.startAnimFinished) {
+          state.introMusic.play();
+        }
+        if (state.bossAnimStarted) {
+          state.bossMusic.play();
+        }
     }
-    else {
-      state.minilevelStr = levelName;
-      await loadLevel();
-    }
+});
 
+async function advanceLevel(levelName) {
+  if (!levelName) {
+    levelName = prompt("Enter level ID:", "levelCustom");
+  }
+
+  if (!levelName) return;
+
+  if (levelName === "lvl11") {
+    // heaven animation
+    state.heavenAnimFinished = false;
+    state.heavenAnimStarted = true;
+    state.heavenAnimTimer = 0;
+    state.playerRotation = 0;
+    state.heavenAnimPlayerX = 650;
+    state.heavenAnimPlayerY = 700;
+    state.leScream.currentTime = 0;
+    state.leScream.play();
+  } else {
+    state.minilevelStr = levelName;
+    await loadLevel();
+  }
+
+  if (state.minilevelStr === "lvl21") {
+    console.log("play boss music");
+    state.bossMusic.currentTime = 0;
+    state.bossMusic.play();
+
+    state.bossAnimStarted = true;
   }
 }
+
 
 async function mainLevel(number) {
   state.minilevelStr = "lvl" + String(number)
@@ -109,7 +138,8 @@ const lvl9Btn = document.getElementById("lvl9"), lvl10Btn = document.getElementB
 
 const lvl11Btn = document.getElementById("lvl11"), lvl12Btn = document.getElementById("lvl12"), lvl13Btn = document.getElementById("lvl13"), 
 lvl14Btn = document.getElementById("lvl14"), lvl15Btn = document.getElementById("lvl15"), lvl16Btn = document.getElementById("lvl16"),
-lvl17Btn = document.getElementById("lvl17"), lvl18Btn = document.getElementById("lvl18"), lvl19Btn = document.getElementById("lvl19"), lvl20Btn = document.getElementById("lvl20")
+lvl17Btn = document.getElementById("lvl17"), lvl18Btn = document.getElementById("lvl18"), lvl19Btn = document.getElementById("lvl19"), lvl20Btn = document.getElementById("lvl20"),
+lvl21Btn = document.getElementById("lvl21")
 
 
 const restartBtn = document.getElementById("restartBtn"), changeLevelBtn = document.getElementById("switchLvl"), howToPlayBtn = document.getElementById("playInstructions"), 
@@ -126,6 +156,8 @@ lvl1Btn.onclick = () => {mainLevel(1)}; lvl2Btn.onclick = () => {mainLevel(2)}; 
 lvl6Btn.onclick = () => {mainLevel(6)}; lvl7Btn.onclick = () => {mainLevel(7)}; lvl8Btn.onclick = () => {mainLevel(8)}; lvl9Btn.onclick = () => {mainLevel(9)}; lvl10Btn.onclick = () => {mainLevel(10)};
 lvl11Btn.onclick = () => {mainLevel(11)}; lvl12Btn.onclick = () => {mainLevel(12)}; lvl13Btn.onclick = () => {mainLevel(13)}; lvl14Btn.onclick = () => {mainLevel(14)}; lvl15Btn.onclick = () => {mainLevel(15)};
 lvl16Btn.onclick = () => {mainLevel(16)}; lvl17Btn.onclick = () => {mainLevel(17)}; lvl18Btn.onclick = () => {mainLevel(18)}; lvl19Btn.onclick = () => {mainLevel(19)}; lvl20Btn.onclick = () => {mainLevel(20)};
+lvl21Btn.onclick = () => {mainLevel(21)};
+
 
 const howtoPlayMenu = document.getElementById("howToPlayMenu")
 const startMenu = document.getElementById("startMenu")
@@ -182,7 +214,13 @@ function handleJump() {
 
 function toggleAdminMode() {
   if (!state.adminMode) {
-    state.attemptedAdminPWD = prompt("Enter admin password:");
+    if (state.bossMusic.paused) {state.attemptedAdminPWD = prompt("Enter admin password:");}
+    else {
+      state.bossMusic.pause();
+      state.attemptedAdminPWD = prompt("Enter admin password:");
+      state.bossMusic.play();
+    }
+    
     if (state.attemptedAdminPWD === state.adminPassword) {
       state.adminMode = true;
       state.adminModeSound.currentTime = 0;
@@ -214,8 +252,6 @@ function handleSettings() {
 }
 
 
-
-
 // --- Main Animation Loop ---
 function animate() {
   requestAnimationFrame(animate);
@@ -225,10 +261,15 @@ function animate() {
   //Change volume based on slider and all assets based on it
   handleSettings()
 
+  if (isPaused()) state.bossMusic.pause();
   if (isPaused() || state.startAnimStarted) return;
 
   drawLevelElements()
 
+  if (!state.bossAnimStarted && state.minilevelStr === "lvl21") state.bossAnimStarted = true;
+  if (state.bossAnimStarted) {handleBossAnim()}
+  if (state.minilevelStr != "lvl21") {state.bossAnimStarted = false;}
+  if (!state.bossAnimStarted) {state.bossMusic.pause(); state.bossMusic.currentTime = 0}
 
   // Admin Mode movement
   if (state.adminMode) {
@@ -300,7 +341,15 @@ function animate() {
   // Draw player
   chooseImgToDraw();
 
+  // Draw fading (for start animation fading)
+  ctx.fillStyle = 'black';
 
+  const fadeOpacity = Math.max(0, state.fadeBackInOpacity);
+  state.fadeBackInOpacity -= 0.05
+
+  ctx.globalAlpha = fadeOpacity;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.globalAlpha = 1;
 }
 
 animate();

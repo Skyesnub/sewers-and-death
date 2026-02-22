@@ -54,7 +54,7 @@ export function handleStartAnim() {
         state.cameraZoom1Y += 0.05
     }
 
-    if (state.startAnimTimer == 250) {
+    if (state.startAnimTimer == 247) {
         state.cameraZoom1X = 300;
         state.cameraZoom1Y = 200;
     }
@@ -124,13 +124,13 @@ export function handleStartAnim() {
         state.cameraZoom1Y -= 0.05
     } 
 
-    if (state.startAnimTimer == 1122) {
+    if (state.startAnimTimer == 1117) {
         state.cameraZoom1 = 2
-        state.cameraZoom1X = 600;
+        state.cameraZoom1X = 1050;
         state.cameraZoom1Y = 250;
     }
 
-    if (state.startAnimTimer == 1182) {
+    if (state.startAnimTimer == 1177) {
         state.cameraZoom1 = 1;
         state.cameraZoom1X = 725;
         state.cameraZoom1Y = 350;
@@ -145,7 +145,7 @@ export function handleStartAnim() {
         if (lightningOpacity < 0) lightningOpacity = 0;
 
         //not using variables here because not moving
-        ctx.drawImage(lightningImage, 680, -230, 250, 500);
+        ctx.drawImage(lightningImage, 680, -233, 250, 500);
         ctx.globalAlpha = 1;
     }
 
@@ -155,10 +155,12 @@ export function handleStartAnim() {
 
     if (state.startAnimTimer > 1390 && !state.startFallTriggered) {
         state.startFallTriggered = true;
+        state.leScream.currentTime = 0;
+        state.leScream.play();
 
         state.startFallVelX = -8;      // leftward impulse
         state.startFallVelY = -5;      // slight upward kick before fall
-        state.startFallAngularVel = 0.2; // radians per frame
+        state.startFallAngularVel = -0.2; // radians per frame
     }
     if (state.startFallTriggered) {
 
@@ -174,6 +176,7 @@ export function handleStartAnim() {
     if (state.startAnimTimer > 1555) {
         state.startAnimStarted = false;
         state.startAnimFinished = true;
+        state.fadeBackInOpacity = 1;
     }
 
     // === WORDS =====
@@ -189,15 +192,22 @@ export function handleStartAnim() {
 
     
     if (state.startAnimTimer > 0 && state.startAnimTimer <= 475) {
-        ctx.fillText("[lore #1]", 25, 675, 10010101100, 104010010)
+        ctx.fillText("[lore 1]", 25, 675, 10010101100, 104010010)
     }
     else if (state.startAnimTimer > 475 && state.startAnimTimer <= 930) {
-        ctx.fillText("[lore #2]", 25, 675, 10010101100, 104010010)
+        ctx.fillStyle = '#ffff5aff'
+        ctx.font = "bold 20px Verdana"; 
+        ctx.fillText("[lore 2]", 25, 675, 10010101100, 104010010)
+    
     }
     else if (state.startAnimTimer > 930) {
-        ctx.fillText("[lore #3]", 25, 675, 10010101100, 104010010)
+        ctx.fillStyle = '#ffff5aff'
+        ctx.font = "bold 20px Verdana"; 
+        ctx.fillText("[lore 3]", 25, 675, 10010101100, 104010010)
     }
 
+    ctx.fillStyle = '#ffff5aff'
+    ctx.font = "bold 30px Verdana"; 
     ctx.fillText("Press [k] to skip", 1150, 675, 1930130103013, 10301301030)
 
     // ====== GRADIANT ======

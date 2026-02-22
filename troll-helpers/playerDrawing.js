@@ -75,6 +75,12 @@ function resetAfterDeath() {
   state.momentum = 0;
   state.playerIMGSize = 60;
 
+  state.bossAnimTimer = 0;
+  state.bossMusic.currentTime = 0;
+  state.bossMusic.pause();
+  state.bossAnimFinished = false;
+  state.bossAnimStarted = false;
+
   state.ziplines.forEach(zip => {
     zip.justJumpedOff = false;
     zip.jumpOffTimer = 0;

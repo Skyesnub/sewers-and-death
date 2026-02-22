@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laser Frame Editor</title>
+    <style>
+        body { background:#111; color:white; font-family:sans-serif; }
+        canvas { background:#000; display:block; margin-bottom:10px; }
+        input, button { margin:5px; }
+        textarea { width:100%; height:150px; background:#222; color:white; }
+    </style>
+</head>
+<body>
+
+<h2>Laser Boss Frame Editor (1450x700)</h2>
+
+<canvas id="editorCanvas" width="1450" height="700"></canvas>
+
+<input type="file" id="musicInput" accept="audio/*">
+<button id="playBtn">Play / Pause</button>
+<span>Frame: <span id="frameDisplay">0</span></span>
+<label>Frame:
+    <input type="number" id="frameInput" min="0" value="0">
+</label>
+<button id="goToFrameBtn">Go</button>
+
+<button id="restartBtn">Restart</button>
+<input type="range" id="audioSlider" min="0" max="100" value="0" step="0.01">
+
+<br>
+
+<label>Turn On Frame</label>
+<input type="number" id="onFrame">
+
+<label>Turn Off Frame</label>
+<input type="number" id="offFrame">
+
+<label>Fade Frames</label>
+<input type="number" id="fadeFrame" value="20">
+
+<button id="setOnNow">Set ON to Current</button>
+<button id="setOffNow">Set OFF to Current</button>
+
+<br>
+
+<button id="exportBtn">Export JSON</button>
+<button id="importBtn">Import JSON</button>
+
+<textarea id="ioBox"></textarea>
+
+<script type="module" src="laser-editor.js"></script>
+
+</body>
+</html>
