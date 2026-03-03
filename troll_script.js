@@ -22,6 +22,7 @@ import { updateClouds } from './troll-helpers/collisions.js';
 import { handleHeavenAnim } from './troll-helpers/heavenAnimHandler.js';
 import { handleStartAnim } from './troll-helpers/startAnimHandler.js';
 import { handleBossAnim } from './troll-helpers/bossAnimHandler.js';
+import { estimateRefreshRate } from './troll-helpers/test-refresh-rate.js';
 
 // --- Input Handlers ---
 document.addEventListener('keydown', e => {
@@ -239,9 +240,6 @@ function handleSettings() {
   if (!state.hitboxTrailOn) {state.hitboxTrail = []}
   state.hitboxTrailOn = checkBoxHitboxTrail.checked
 
-
-  //console.log(state.currentVolume)
-
   state.leMeow.volume = state.currentVolume/100
   state.vineBoom.volume = state.currentVolume/100
   state.leScream.volume = state.currentVolume/100
@@ -251,6 +249,13 @@ function handleSettings() {
   state.jumpSound.volume = state.currentVolume/100
 }
 
+export let refreshRate = null;
+
+export function setRefreshRate(value) {
+  refreshRate = value;
+}
+
+requestAnimationFrame(estimateRefreshRate)
 
 // --- Main Animation Loop ---
 function animate() {

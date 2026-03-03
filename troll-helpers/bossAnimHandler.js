@@ -114,7 +114,7 @@ class Laser {
         const dy = closestY - cy;
         const dist = Math.sqrt(dx*dx + dy*dy);
 
-        const laserRadius = -10000000; //for now cause im to lazy to actually win ever ytime
+        const laserRadius = 1; //for now cause im to lazy to actually win ever ytime
         const playerRadius = Math.sqrt((w/2)**2 + (h/2)**2);
 
         return dist < laserRadius + playerRadius;
@@ -137,13 +137,17 @@ const bossLasers = bossLasersData.map(data =>
     new Laser(...data)
 );
 
-
 export function handleBossAnim() {
     state.bossAnimTimer ++
 
     if (state.bossMusic.paused) {
         state.bossMusic.play();
     }
+    
+    if (state.bossAnimTimer % 5 == 0) {
+        console.log("[" + state.playerX + ", " + state.playerY + ", " + state.bossAnimTimer + "]")
+    }
+
 
     for (const laser of bossLasers) {
 

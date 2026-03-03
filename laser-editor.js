@@ -8,6 +8,9 @@ const FPS = 60;
 const frameInput = document.getElementById("frameInput");
 const goToFrameBtn = document.getElementById("goToFrameBtn");
 
+import { playerLocations } from "./troll-helpers/playerLocations.js";
+
+import { state } from "./troll-helpers/state.js";
 
 let lasers = [];
 let selectedLaser = null;
@@ -341,9 +344,9 @@ document.getElementById("importBtn").onclick = () => {
 import { levelCustom } from "./levels/lvl21.js";
 // ===== LEVEL RENDER HOOK =====
 
-// Replace this with your actual level render function
+
 function renderLevelPreview() {
-    ctx.clearRect(0,0, canvas.width, canvas.height)
+    
 
     for (const block of levelCustom.blocks) {
         ctx.fillStyle = 'blue';
@@ -355,12 +358,37 @@ function renderLevelPreview() {
     }
 }
 
+function drawPlayer(x,y) {
+    ctx.strokeStyle = '#c0ff9bff';
+    ctx.strokeRect(x + state.playerHitbox.offsetX,
+                   y + state.playerHitbox.offsetY,
+                   state.playerHitbox.width,
+                   state.playerHitbox.height)
+}
+
+function renderPlayer() {
+
+    const frame = getCurrentFrame()
+
+    for (const location of playerLocations) {
+        if (location[2] == frame) {drawPlayer(location[0], location[1]); return}
+        else if (location[2] + 1 == frame) {drawPlayer(location[0], location[1]); return}
+        else if (location[2] + 2 == frame) {drawPlayer(location[0], location[1]); return}
+        else if (location[2] + 3 == frame) {drawPlayer(location[0], location[1]); return}
+        else if (location[2] + 4 == frame) {drawPlayer(location[0], location[1]); return}
+        
+
+    }
+}
+
 // ===== MAIN LOOP =====
 
 function loop() {
     requestAnimationFrame(loop);
-    renderLevelPreview();
+    ctx.clearRect(0,0, canvas.width, canvas.height)
 
+    renderLevelPreview();
+    renderPlayer()
 
     const frame = getCurrentFrame();
     frameDisplay.textContent = frame;

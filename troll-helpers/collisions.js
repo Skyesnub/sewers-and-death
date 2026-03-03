@@ -240,11 +240,15 @@ export function updateClouds() {
 
       for (const block of state.blocks) {
         if (block.material != 'cloud') {
-          let bottomOfPlayer = state.playerY + state.playerHitbox.offsetY + state.playerSize
+          let bottomOfPlayer = state.playerY + state.playerHitbox.offsetY + state.playerHitbox.height
           let horizontalOverlap = hb.right > block.x && hb.left < block.x + 50;
 
-          if (horizontalOverlap && bottomOfPlayer > block.y && deltaY > 0) {
+          let verticalOverlap = ((bottomOfPlayer + deltaY) > block.y && (bottomOfPlayer + deltaY) < block.y + 50)
+
+          if (horizontalOverlap && verticalOverlap && deltaY > 0) {
             deltaY = 0;
+            console.log("changed delta y to 0!")
+            console.log(bottomOfPlayer > (block.y + 5), bottomOfPlayer, (block.y + 5))
           }
         }
 
