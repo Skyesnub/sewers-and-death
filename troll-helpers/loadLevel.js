@@ -65,8 +65,11 @@ export async function loadLevel() {
   state.keyRotation = 0;
   state.hitboxTrail = [];
 
-  state.speedrunStarted = false;
-  state.speedrunTimer = 0;
+  if (!state.totalSpeedrunTimerExists) {  
+    state.speedrunTimer = 0;
+    state.speedrunStarted = false;
+    console.log("speedrun started set to false!")
+  }
 }
 
 export function loadBackgroundImage(name) {

@@ -74,7 +74,7 @@ function keyAnimation() {
 
     // Move to center first
     if (!state.keySnapped) {
-        state.speedrunStarted = false;
+        if (!state.totalSpeedrunTimerExists) {state.speedrunStarted = false;}
 
         const dx = (centerX - state.keyX) * 0.1;
         const dy = (centerY - state.keyY) * 0.1;

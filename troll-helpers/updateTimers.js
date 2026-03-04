@@ -20,5 +20,6 @@ export function updateTimers() {
 
   if (state.speedrunStarted) {
     state.speedrunTimer += 0.016666666
+    state.totalSpeedrunTimer += 0.01666666666666
   }
 }

@@ -95,7 +95,6 @@ async function advanceLevel(levelName) {
   }
 
   if (state.minilevelStr === "lvl21") {
-    console.log("play boss music");
     state.bossMusic.currentTime = 0;
     state.bossMusic.play();
 
@@ -148,6 +147,7 @@ quitBtn = document.getElementById("quitBtn"), outStartMenu = document.getElement
 
 const currentVolume = document.getElementById("volumeRange");
 const checkBoxSpeedrunTimer = document.getElementById("speedrunTimerEnabled");
+const checkBoxTotalSpeedrunTimer = document.getElementById("totalSpeedrunTimeEnabled");
 const checkBoxHitboxes = document.getElementById("hitboxesEnabledCheck");
 const checkBoxHitboxTrail = document.getElementById("hitboxTrailEnabledCheck")
 
@@ -185,7 +185,6 @@ outStartMenu.onclick = async () => {
   await bootToIntro()
 }
 settingsBtn.onclick = () => {
-  console.log("yes the settings button will do something eventually")
   toggleSettingsMenu()
 }
 
@@ -230,10 +229,28 @@ function toggleAdminMode() {
   } else state.adminMode = false;
 }
 
+checkBoxSpeedrunTimer.addEventListener("change", () => {
+  if (checkBoxSpeedrunTimer.checked) {
+    checkBoxTotalSpeedrunTimer.checked = false;
+    state.speedrunTimer = 0;
+    state.restart.currentTime = 0; state.restart.play(); death(0); 
+  }
+});
+
+checkBoxTotalSpeedrunTimer.addEventListener("change", () => {
+  if (checkBoxTotalSpeedrunTimer.checked) {
+    checkBoxSpeedrunTimer.checked = false;
+    state.totalSpeedrunTimer = 0;
+    advanceLevel("lvl1")
+    state.speedrunStarted = false;
+  }
+});
+
 function handleSettings() {
   state.currentVolume = currentVolume.value;
 
   state.speedrunTimerExists = checkBoxSpeedrunTimer.checked
+  state.totalSpeedrunTimerExists = checkBoxTotalSpeedrunTimer.checked
 
   state.hitboxes = checkBoxHitboxes.checked
 
@@ -340,6 +357,11 @@ function animate() {
     ctx.fillStyle = "white";
     ctx.font = "30px Arial";
     ctx.fillText(Math.round(state.speedrunTimer * 100)/100, 1300, 50, 999, 999)
+  }
+  if (state.totalSpeedrunTimerExists) {
+    ctx.fillStyle = "white";
+    ctx.font = "30px Arial";
+    ctx.fillText(Math.round(state.totalSpeedrunTimer * 100)/100, 1300, 50, 999, 999)
   }
 
 

@@ -70,8 +70,14 @@ function resetAfterDeath() {
   state.keyY = state.keyStartY;
   state.levelTransitioning = false;
   state.hitboxTrail = [];
-  state.speedrunTimer = 0;
-  state.speedrunStarted = false;
+  if (!state.totalSpeedrunTimerExists) {  
+    state.speedrunTimer = 0;
+    state.speedrunStarted = false;
+    console.log("speedrun started set to false!")
+  }
+
+
+  
   state.momentum = 0;
   state.playerIMGSize = 60;
 
