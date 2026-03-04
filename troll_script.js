@@ -105,6 +105,7 @@ async function advanceLevel(levelName) {
 
 async function mainLevel(number) {
   state.minilevelStr = "lvl" + String(number)
+  checkBoxTotalSpeedrunTimer.checked = false;
   await loadLevel();
   resumeGame();
 }
