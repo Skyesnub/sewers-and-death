@@ -224,6 +224,7 @@ function toggleAdminMode() {
     
     if (state.attemptedAdminPWD === state.adminPassword) {
       state.adminMode = true;
+      state.speedrunCheated = true;
       state.adminModeSound.currentTime = 0;
       state.adminModeSound.play();
     }
@@ -235,6 +236,7 @@ checkBoxSpeedrunTimer.addEventListener("change", () => {
     checkBoxTotalSpeedrunTimer.checked = false;
     state.speedrunTimer = 0;
     state.restart.currentTime = 0; state.restart.play(); death(0); 
+    state.speedrunCheated = false;
   }
 });
 
@@ -244,6 +246,7 @@ checkBoxTotalSpeedrunTimer.addEventListener("change", () => {
     state.totalSpeedrunTimer = 0;
     advanceLevel("lvl1")
     state.speedrunStarted = false;
+    state.speedrunCheated = false;
   }
 });
 
@@ -355,12 +358,14 @@ function animate() {
   }
 
   if (state.speedrunTimerExists) {
-    ctx.fillStyle = "white";
+    if (state.speedrunCheated) {ctx.fillStyle = "red"}
+    else {ctx.fillStyle = "white";}
     ctx.font = "30px Arial";
     ctx.fillText(Math.round(state.speedrunTimer * 100)/100, 1300, 50, 999, 999)
   }
   if (state.totalSpeedrunTimerExists) {
-    ctx.fillStyle = "white";
+    if (state.speedrunCheated) {ctx.fillStyle = "red"}
+    else {ctx.fillStyle = "white";}
     ctx.font = "30px Arial";
     ctx.fillText(Math.round(state.totalSpeedrunTimer * 100)/100, 1300, 50, 999, 999)
   }

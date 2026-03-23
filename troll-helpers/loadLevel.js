@@ -70,6 +70,11 @@ export async function loadLevel() {
     state.speedrunStarted = false;
     console.log("speedrun started set to false!")
   }
+
+  if (state.totalSpeedrunTimerExists && state.minilevelStr === "lvl21") {
+    state.speedrunStarted = false;
+    console.log("finished all 20 levels!")
+  }
 }
 
 export function loadBackgroundImage(name) {

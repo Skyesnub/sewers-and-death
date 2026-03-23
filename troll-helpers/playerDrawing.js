@@ -72,12 +72,11 @@ function resetAfterDeath() {
   state.hitboxTrail = [];
   if (!state.totalSpeedrunTimerExists) {  
     state.speedrunTimer = 0;
+    state.speedrunCheated = false;
     state.speedrunStarted = false;
     console.log("speedrun started set to false!")
   }
 
-
-  
   state.momentum = 0;
   state.playerIMGSize = 60;
 

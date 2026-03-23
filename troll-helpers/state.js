@@ -225,6 +225,8 @@ export const state = {
   totalSpeedrunTimer: 0,
   totalSpeedrunTimerExists: false,
 
+  speedrunCheated: false,
+
   // admin
   adminPassword: 'admin',
   attemptedAdminPWD: '',
