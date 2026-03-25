@@ -24,6 +24,8 @@ import {
   lightningImage,
   startPlatform,
   bossMusic,
+  jumpFrame1,
+  jumpFrame2,
   
 } from './assets.js';
 
@@ -104,6 +106,9 @@ export const state = {
   PDeathR3,
   PDeathL4,
   PDeathR4,
+
+  jumpFrame1,
+  jumpFrame2,
 
   blockTexture,
   iceBlockTexture,
@@ -195,6 +200,7 @@ export const state = {
   bossAnimStarted:false,
   bossAnimFinished: false,
   bossAnimTimer: 0,
+  jumpAnimStarted: false,
 
 
   //key

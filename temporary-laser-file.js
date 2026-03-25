@@ -1,4 +1,4 @@
-[
+export const bossLasersData = [
   [
     650,
     625,

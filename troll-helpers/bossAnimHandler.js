@@ -137,17 +137,51 @@ const bossLasers = bossLasersData.map(data =>
     new Laser(...data)
 );
 
+let animPlayerX = 1325;
+let animPlayerY = 50;
+
+let impulseX = 10;
+let impulseY = 10;
+
+let speedY = impulseY;
+
+state.bossAnimTimer = 1400
+
 export function handleBossAnim() {
     state.bossAnimTimer ++
 
     if (state.bossMusic.paused) {
         state.bossMusic.play();
     }
-    
-    if (state.bossAnimTimer % 5 == 0) {
-        console.log("[" + state.playerX + ", " + state.playerY + ", " + state.bossAnimTimer + "]")
+
+    if (state.bossAnimTimer < 1801) {state.jumpAnimStarted = false;}
+    if (state.bossAnimTimer > 1800) {state.playerY = -5000; state.jumpAnimStarted = true;}
+
+    if (state.bossAnimTimer > 1800 && state.bossAnimTimer < 1900) {
+        ctx.drawImage(state.player_glow, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)
+    }
+    if (state.bossAnimTimer > 1800 && state.bossAnimTimer < 1820) {
+        ctx.drawImage(state.PLeftImg1, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)
+    }
+    if (state.bossAnimTimer > 1819 && state.bossAnimTimer < 1840) {
+        ctx.drawImage(state.jumpFrame1, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)
+        console.log("weishenme")
+    }
+    if (state.bossAnimTimer > 1839 && state.bossAnimTimer < 1860) {
+        ctx.drawImage(state.jumpFrame2, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)
+        console.log("weishenme2")
+    }
+    if (state.bossAnimTimer > 1859 && state.bossAnimTimer < 1880) {
+        ctx.drawImage(state.jumpFrame1, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)
     }
 
+    if (state.bossAnimTimer > 1815) {
+        animPlayerX -= impulseX;
+        animPlayerY -= speedY;
+
+        speedY = speedY - 0.6
+    }
+    
 
     for (const laser of bossLasers) {
 

@@ -134,3 +134,9 @@ lightningImage.src = "./trollgame_images/lightning.png"
 
 export const startPlatform = new Image();
 startPlatform.src = "./trollgame_images/platform.png"
+
+export const jumpFrame1 = new Image();
+jumpFrame1.src = "./trollgame_images/jump-frame-1.png"
+
+export const jumpFrame2 = new Image();
+jumpFrame2.src = "./trollgame_images/jump-frame-2.png"

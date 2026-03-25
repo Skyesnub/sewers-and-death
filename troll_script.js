@@ -317,7 +317,7 @@ function animate() {
 
 
   // Physics update
-  if (!state.onZipline && !state.adminMode) applyPhysics();
+  if (!state.onZipline && !state.adminMode && !state.jumpAnimStarted) applyPhysics();
   if (state.adminMode) {
     state.playerAnimSpeed = 10
     if (state.inputLeft) {state.playerX -= state.playerAnimSpeed}
