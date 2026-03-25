@@ -145,8 +145,6 @@ let impulseY = 10;
 
 let speedY = impulseY;
 
-state.bossAnimTimer = 1400
-
 export function handleBossAnim() {
     state.bossAnimTimer ++
 
