@@ -26,6 +26,8 @@ import {
   bossMusic,
   jumpFrame1,
   jumpFrame2,
+  explosion1,
+  explosion2,
   
 } from './assets.js';
 
@@ -109,6 +111,8 @@ export const state = {
 
   jumpFrame1,
   jumpFrame2,
+  explosion1,
+  explosion2,
 
   blockTexture,
   iceBlockTexture,

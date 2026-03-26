@@ -140,3 +140,9 @@ jumpFrame1.src = "./trollgame_images/jump-frame-1.png"
 
 export const jumpFrame2 = new Image();
 jumpFrame2.src = "./trollgame_images/jump-frame-2.png"
+
+export const explosion1 = new Image();
+explosion1.src = "./trollgame_images/explosion-1.png"
+
+export const explosion2 = new Image();
+explosion2.src = "./trollgame_images/explosion-2.png"

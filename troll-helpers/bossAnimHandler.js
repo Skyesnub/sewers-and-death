@@ -141,9 +141,19 @@ let animPlayerX = 1325;
 let animPlayerY = 50;
 
 let impulseX = 10;
-let impulseY = 10;
+let impulseY = 11;
 
 let speedY = impulseY;
+
+let bossMaxY = 350
+let bossMinY = 340
+let dirUp = false;
+let bossY = 345
+let bossX = 600
+
+let whitefade = 0;
+
+state.bossAnimTimer = 1400
 
 export function handleBossAnim() {
     state.bossAnimTimer ++
@@ -155,23 +165,11 @@ export function handleBossAnim() {
     if (state.bossAnimTimer < 1801) {state.jumpAnimStarted = false;}
     if (state.bossAnimTimer > 1800) {state.playerY = -5000; state.jumpAnimStarted = true;}
 
-    if (state.bossAnimTimer > 1800 && state.bossAnimTimer < 1900) {
-        ctx.drawImage(state.player_glow, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)
-    }
-    if (state.bossAnimTimer > 1800 && state.bossAnimTimer < 1820) {
-        ctx.drawImage(state.PLeftImg1, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)
-    }
-    if (state.bossAnimTimer > 1819 && state.bossAnimTimer < 1840) {
-        ctx.drawImage(state.jumpFrame1, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)
-        console.log("weishenme")
-    }
-    if (state.bossAnimTimer > 1839 && state.bossAnimTimer < 1860) {
-        ctx.drawImage(state.jumpFrame2, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)
-        console.log("weishenme2")
-    }
-    if (state.bossAnimTimer > 1859 && state.bossAnimTimer < 1880) {
-        ctx.drawImage(state.jumpFrame1, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)
-    }
+    if (state.bossAnimTimer > 1800 && state.bossAnimTimer < 1900) {ctx.drawImage(state.player_glow, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)}
+    if (state.bossAnimTimer > 1800 && state.bossAnimTimer < 1820) {ctx.drawImage(state.PLeftImg1, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)}
+    if (state.bossAnimTimer > 1819 && state.bossAnimTimer < 1840) { ctx.drawImage(state.jumpFrame1, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)}
+    if (state.bossAnimTimer > 1839 && state.bossAnimTimer < 1860) {ctx.drawImage(state.jumpFrame2, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)}
+    if (state.bossAnimTimer > 1859 && state.bossAnimTimer < 1900) {ctx.drawImage(state.jumpFrame1, animPlayerX, animPlayerY, state.playerIMGSize, state.playerIMGSize)}
 
     if (state.bossAnimTimer > 1815) {
         animPlayerX -= impulseX;
@@ -179,7 +177,50 @@ export function handleBossAnim() {
 
         speedY = speedY - 0.6
     }
+
+
     
+    if (dirUp) {bossY -= 0.1}
+    else {bossY += 0.1}
+
+    if (bossY > bossMaxY) {dirUp = true}
+    if (bossY < bossMinY) {dirUp = false}
+
+    ctx.fillStyle = 'blue';
+    ctx.drawImage(state.godOnThrone, bossX, bossY, 200, 200)
+
+    if (state.bossAnimTimer > 1870 && state.bossAnimTimer < 1880) {
+        ctx.drawImage(state.explosion1, 550, 275, 400, 400)
+    }
+    if (state.bossAnimTimer > 1879 && state.bossAnimTimer < 1900) {
+        ctx.drawImage(state.explosion2, 550, 275, 400, 400)
+    }
+
+    if (state.bossAnimTimer > 1880 && state.bossAnimTimer < 1960) {
+        ctx.fillStyle = 'white'
+        ctx.globalAlpha = whitefade
+        whitefade = (Math.min(whitefade + 0.025, 1))
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+
+        ctx.globalAlpha = 1
+    }
+    if (state.bossAnimTimer > 1959) {
+
+        ctx.fillStyle = "black";
+        ctx.globalAlpha = 0.3;
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.globalAlpha = 1;
+
+        bossX = -1000
+        ctx.fillStyle = 'white'
+        ctx.globalAlpha = whitefade
+        whitefade = (Math.max(whitefade - 0.025, 0))
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+
+        ctx.globalAlpha = 1
+    }
+
+
 
     for (const laser of bossLasers) {
 

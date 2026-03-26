@@ -292,8 +292,8 @@ function animate() {
 
   drawLevelElements()
 
-  if (!state.bossAnimStarted && state.minilevelStr === "lvl21") state.bossAnimStarted = true;
-  if (state.bossAnimStarted) {handleBossAnim()}
+  if (!state.bossAnimStarted && state.minilevelStr === "lvl21" && !state.bossAnimFinished) state.bossAnimStarted = true;
+  if (state.bossAnimStarted && !state.bossAnimFinished) {handleBossAnim()}
   if (state.minilevelStr != "lvl21") {state.bossAnimStarted = false;}
   if (!state.bossAnimStarted) {state.bossMusic.pause(); state.bossMusic.currentTime = 0}
 
@@ -368,6 +368,19 @@ function animate() {
     else {ctx.fillStyle = "white";}
     ctx.font = "30px Arial";
     ctx.fillText(Math.round(state.totalSpeedrunTimer * 100)/100, 1300, 50, 999, 999)
+  }
+
+  if (state.bossAnimTimer > 1990) {
+      state.bossAnimFinished = true;
+
+      ctx.fillStyle = "black";
+      ctx.globalAlpha = 0.3;
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.globalAlpha = 1;
+
+      ctx.font = "bold 72px Arial";
+      ctx.fillStyle = "white";
+      ctx.fillText('YOU WIN!', 530, 300, 1000000, 1000000)
   }
 
 
