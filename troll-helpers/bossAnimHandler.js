@@ -153,8 +153,6 @@ let bossX = 600
 
 let whitefade = 0;
 
-state.bossAnimTimer = 1400
-
 export function handleBossAnim() {
     state.bossAnimTimer ++
 

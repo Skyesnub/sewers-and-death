@@ -380,7 +380,22 @@ function animate() {
 
       ctx.font = "bold 72px Arial";
       ctx.fillStyle = "white";
-      ctx.fillText('YOU WIN!', 530, 300, 1000000, 1000000)
+      ctx.fillText('YOU WIN!', 530, 300, 1000000, 1000000);
+
+      ctx.fillStyle = "black";
+      ctx.globalAlpha = 0.7;
+      ctx.fillRect(0,0, 300, canvas.height);
+      ctx.globalAlpha = 1;
+
+      ctx.font = "bold 42px Arial";
+      ctx.fillStyle = "white";
+      ctx.fillText("Playtesters", 30, 60, 1000000, 1000000);
+
+      ctx.font = "bold 24px Arial";
+      ctx.fillText("Brian Yeh", 20, 200, 1000000, 1000000);
+      ctx.fillText("Asher Wrobel", 20, 300, 1000000, 1000000);
+      ctx.fillText("Adeline Bunner", 20, 400, 1000000, 1000000);
+      ctx.fillText("Jackson Nabwangu", 20, 500, 1000000, 1000000);
   }
 
 
