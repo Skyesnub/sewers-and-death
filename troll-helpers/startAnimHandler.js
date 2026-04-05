@@ -192,18 +192,18 @@ export function handleStartAnim() {
 
     
     if (state.startAnimTimer > 0 && state.startAnimTimer <= 475) {
-        ctx.fillText("[lore 1]", 25, 675, 10010101100, 104010010)
+        ctx.fillText("Hi!", 25, 675, 10010101100, 104010010)
     }
     else if (state.startAnimTimer > 475 && state.startAnimTimer <= 930) {
         ctx.fillStyle = '#ffff5aff'
         ctx.font = "bold 20px Verdana"; 
-        ctx.fillText("[lore 2]", 25, 675, 10010101100, 104010010)
+        ctx.fillText("Have fun playing my game!", 25, 675, 10010101100, 104010010)
     
     }
     else if (state.startAnimTimer > 930) {
         ctx.fillStyle = '#ffff5aff'
         ctx.font = "bold 20px Verdana"; 
-        ctx.fillText("[lore 3]", 25, 675, 10010101100, 104010010)
+        ctx.fillText("Good luck and have fun (again)!", 25, 675, 10010101100, 104010010)
     }
 
     ctx.fillStyle = '#ffff5aff'

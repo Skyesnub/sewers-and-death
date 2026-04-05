@@ -392,10 +392,10 @@ function animate() {
       ctx.fillText("Playtesters", 30, 60, 1000000, 1000000);
 
       ctx.font = "bold 24px Arial";
-      ctx.fillText("Brian Yeh", 20, 200, 1000000, 1000000);
-      ctx.fillText("Asher Wrobel", 20, 300, 1000000, 1000000);
-      ctx.fillText("Adeline Bunner", 20, 400, 1000000, 1000000);
-      ctx.fillText("Jackson Nabwangu", 20, 500, 1000000, 1000000);
+      ctx.fillText("Brian", 20, 200, 1000000, 1000000);
+      ctx.fillText("Asher", 20, 300, 1000000, 1000000);
+      ctx.fillText("Adeline", 20, 400, 1000000, 1000000);
+      ctx.fillText("Jackson", 20, 500, 1000000, 1000000);
   }
 
 
